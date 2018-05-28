@@ -5,52 +5,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:peopledex"
         mc:Ignorable="d"
-        Title="Peopledex" Height="715.543" Width="700.651" Background="White">
-    <DockPanel>
-        <Menu DockPanel.Dock="Top" Height="25">
-            <MenuItem Header="_File">
-                <MenuItem Header="_New Contact" />
-                <Separator />
-                <MenuItem Header="_Exit" />
-            </MenuItem>
-            <MenuItem Header="_Contact" Height="25">
-                <MenuItem Header="_Edit Contact" />
-                <MenuItem Header="_Add Event" />
-                <MenuItem Header="_Archive Contact" />
-                <Separator />
-                <MenuItem Header="_Exit" />
-            </MenuItem>
-        </Menu>
-        <Grid>
-            <Image HorizontalAlignment="Left" Height="131" Margin="34,81,0,0" VerticalAlignment="Top" Width="139" Style="{DynamicResource profileImage}" RenderTransformOrigin="0.623,0.186" Source="Resources/test.jpg"/>
-            <Label x:Name="ProfileNumber" Content="#013" Margin="34,25,424,0" VerticalAlignment="Top" Foreground="#FF333333" FontSize="18" Opacity="0.5"/>
-            <Label x:Name="ProfileName" Content="Thomas Olek" Margin="95,25,24,0" VerticalAlignment="Top" Foreground="#FF333333" FontSize="18"/>
-            <Label Content="Date of Birth" HorizontalAlignment="Left" Margin="191,149,0,0" VerticalAlignment="Top" FontSize="14" Opacity="0.75" Width="98"/>
-            <Label Content="Location" HorizontalAlignment="Left" Margin="191,81,0,0" VerticalAlignment="Top" FontSize="14" Opacity="0.75" Width="98"/>
-            <Label Content="Ethnicity" HorizontalAlignment="Left" Margin="191,115,0,0" VerticalAlignment="Top" FontSize="14" Opacity="0.75" Width="98"/>
-            <Label Content="Occupation" HorizontalAlignment="Left" Margin="191,183,0,0" VerticalAlignment="Top" FontSize="14" Opacity="0.75" Width="98"/>
-            <Label x:Name="ProfileLocation" Content="Omaha, NE" HorizontalAlignment="Left" Margin="294,81,0,0" VerticalAlignment="Top" FontSize="14" Width="366"/>
-            <Label x:Name="ProfileEthnicity" Content="Half Australian, half Japanese" HorizontalAlignment="Left" Margin="294,115,0,0" VerticalAlignment="Top" FontSize="14" Width="366"/>
-            <Label x:Name="ProfileBirthday" Content="12/01/1990" HorizontalAlignment="Left" Margin="294,149,0,0" VerticalAlignment="Top" FontSize="14" Width="366"/>
-            <Label x:Name="ProfileOccupation" Content="Student at UWA" HorizontalAlignment="Left" Margin="294,183,0,0" VerticalAlignment="Top" FontSize="14" Width="366"/>
-            <DataGrid x:Name="ProfileEvents2" GridLinesVisibility="None" HorizontalAlignment="Left" Height="242" Margin="34,261,0,0" VerticalAlignment="Top" Width="626" SelectionChanged="DataGrid_SelectionChanged" FontSize="14">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Path=Date}" Width="90"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Event" IsReadOnly="True"  Binding="{Binding Path=Label}" Width="130"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Path=Description}" Width="*"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Label Content="Events with this person" HorizontalAlignment="Left" Margin="34,227,0,0" VerticalAlignment="Top" FontSize="14" Opacity="0.75" Width="626"/>
-            <Label Content="Profiles" HorizontalAlignment="Left" Margin="34,514,0,0" VerticalAlignment="Top" FontSize="14" Opacity="0.75" Width="626"/>
-            <DataGrid x:Name="ProfileAccounts2" GridLinesVisibility="None" HorizontalAlignment="Left" Height="81" Margin="34,548,0,0" VerticalAlignment="Top" Width="627" SelectionChanged="DataGrid_SelectionChanged" FontSize="14">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Type" IsReadOnly="True" Binding="{Binding Type}" Width="120"/>
-                    <DataGridTextColumn Header="Name/Link" IsReadOnly="True"  Binding="{Binding Name}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
+        Title="Main" Height="525.575" Width="869.309">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="341*" />
+            <ColumnDefinition Width="520*" />
+        </Grid.ColumnDefinitions>
+        <Grid HorizontalAlignment="Left" Height="475" VerticalAlignment="Top" Width="321" Margin="10,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="168*"/>
+                <RowDefinition Height="31*"/>
+                <RowDefinition Height="276*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="NewProfileButton" Content="New" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Bottom" Width="56" Height="31" Click="NewProfileButton_Click"/>
+            <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="31" Margin="88,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="153"/>
+            <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="246,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="65" Height="31" RenderTransformOrigin="0.191,0.489"/>
+            <Rectangle x:Name="Title" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="148" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="301"/>
+            <TextBlock HorizontalAlignment="Left" Margin="125,76,0,0" TextWrapping="Wrap" Text="Peopledex" VerticalAlignment="Top"/>
+            <ListView Margin="10,12,10,10" x:Name="ProfileListing" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Foreground="Black" FontSize="14">
+                <ListView.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="-0.118"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-0.494"/>
+                    </TransformGroup>
+                </ListView.RenderTransform>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Entry" Width="80" DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
-    </DockPanel>
+        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="475" VerticalAlignment="Top" Width="500" Margin="10,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListView Margin="10,10,10,49" x:Name="ProfileEvents" Grid.Row="1">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Date" Width="80" DisplayMemberBinding="{Binding Date}" />
+                        <GridViewColumn Header="Event" Width="120" DisplayMemberBinding="{Binding Title}" />
+                        <GridViewColumn Header="Description" Width="270" DisplayMemberBinding="{Binding Description}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Image x:Name="ProfileImage" HorizontalAlignment="Left" Height="147" Margin="10,10,0,0" VerticalAlignment="Top" Width="156" Stretch="UniformToFill"/>
+            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="98" Margin="181,59,0,0" Stroke="Black" VerticalAlignment="Top" Width="309"/>
+            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="36" Margin="181,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="309"/>
+            <Button x:Name="PreviousProfileButton" Content="&lt;" HorizontalAlignment="Left" Margin="10,195,0,0" Grid.Row="1" VerticalAlignment="Top" Width="58" Height="32"/>
+            <Button x:Name="NextProfileButton" Content="&gt;" HorizontalAlignment="Left" Margin="432,195,0,0" Grid.Row="1" VerticalAlignment="Top" Width="58" Height="32"/>
+            <Button x:Name="EditProfileButton" Content="Edit" HorizontalAlignment="Left" Margin="82,195,0,0" Grid.Row="1" VerticalAlignment="Top" Width="84" Height="32" RenderTransformOrigin="1.09,0.556"/>
+            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="57" Stroke="Black" VerticalAlignment="Top" Width="480" Margin="10,171,0,0"/>
+            <TextBlock x:Name="ProfileDescription" HorizontalAlignment="Left" Margin="10,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="57" Width="480"/>
+            <TextBlock x:Name="ProfileNumber" HorizontalAlignment="Left" Margin="181,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Text="#000"/>
+            <TextBlock x:Name="ProfileName" HorizontalAlignment="Left" Margin="242,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Text="-"/>
+            <TextBlock HorizontalAlignment="Left" Margin="181,80,0,0" TextWrapping="Wrap" Text="Occupation" VerticalAlignment="Top" Width="84"/>
+            <TextBlock HorizontalAlignment="Left" Margin="181,101,0,0" TextWrapping="Wrap" Text="Birthday" VerticalAlignment="Top" Width="84"/>
+            <TextBlock HorizontalAlignment="Left" Margin="181,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="21"><Run Text="Location"/><LineBreak/><Run/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="181,122,0,0" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Width="84"/>
+            <TextBlock HorizontalAlignment="Left" Margin="181,141,0,0" TextWrapping="Wrap" Text="Dislikes" VerticalAlignment="Top" Width="84"/>
+            <TextBlock x:Name="ProfileLocation" HorizontalAlignment="Left" Margin="270,59,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="220"/>
+            <TextBlock x:Name="ProfileOccupation" HorizontalAlignment="Left" Margin="270,80,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="220"/>
+            <TextBlock x:Name="ProfileBirthday" HorizontalAlignment="Left" Margin="270,101,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="220"/>
+            <TextBlock x:Name="ProfileLikes" HorizontalAlignment="Left" Margin="270,122,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="220"/>
+            <TextBlock x:Name="ProfileDislikes" HorizontalAlignment="Left" Margin="270,141,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="220"/>
 
-
-
+        </Grid>
+    </Grid>
 </Window>
