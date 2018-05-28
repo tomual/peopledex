@@ -33,7 +33,7 @@
             <Label x:Name="ProfileEthnicity" Content="Half Australian, half Japanese" HorizontalAlignment="Left" Margin="294,115,0,0" VerticalAlignment="Top" FontSize="14" Width="366"/>
             <Label x:Name="ProfileBirthday" Content="12/01/1990" HorizontalAlignment="Left" Margin="294,149,0,0" VerticalAlignment="Top" FontSize="14" Width="366"/>
             <Label x:Name="ProfileOccupation" Content="Student at UWA" HorizontalAlignment="Left" Margin="294,183,0,0" VerticalAlignment="Top" FontSize="14" Width="366"/>
-            <DataGrid x:Name="ProfileEvents" GridLinesVisibility="None" HorizontalAlignment="Left" Height="242" Margin="34,261,0,0" VerticalAlignment="Top" Width="626" SelectionChanged="DataGrid_SelectionChanged" FontSize="14">
+            <DataGrid x:Name="ProfileEvents2" GridLinesVisibility="None" HorizontalAlignment="Left" Height="242" Margin="34,261,0,0" VerticalAlignment="Top" Width="626" SelectionChanged="DataGrid_SelectionChanged" FontSize="14">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding Path=Date}" Width="90"></DataGridTextColumn>
                     <DataGridTextColumn Header="Event" IsReadOnly="True"  Binding="{Binding Path=Label}" Width="130"></DataGridTextColumn>
@@ -42,7 +42,7 @@
             </DataGrid>
             <Label Content="Events with this person" HorizontalAlignment="Left" Margin="34,227,0,0" VerticalAlignment="Top" FontSize="14" Opacity="0.75" Width="626"/>
             <Label Content="Profiles" HorizontalAlignment="Left" Margin="34,514,0,0" VerticalAlignment="Top" FontSize="14" Opacity="0.75" Width="626"/>
-            <DataGrid x:Name="ProfileAccounts" GridLinesVisibility="None" HorizontalAlignment="Left" Height="81" Margin="34,548,0,0" VerticalAlignment="Top" Width="627" SelectionChanged="DataGrid_SelectionChanged" FontSize="14">
+            <DataGrid x:Name="ProfileAccounts2" GridLinesVisibility="None" HorizontalAlignment="Left" Height="81" Margin="34,548,0,0" VerticalAlignment="Top" Width="627" SelectionChanged="DataGrid_SelectionChanged" FontSize="14">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Type" IsReadOnly="True" Binding="{Binding Type}" Width="120"/>
                     <DataGridTextColumn Header="Name/Link" IsReadOnly="True"  Binding="{Binding Name}" Width="*"/>

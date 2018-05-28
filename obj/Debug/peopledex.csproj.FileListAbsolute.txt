@@ -30,3 +30,5 @@ D:\Documents\peopledex\obj\Debug\peopledex.csproj.GenerateResource.Cache
 D:\Documents\peopledex\obj\Debug\peopledex.csproj.CoreCompileInputs.cache
 D:\Documents\peopledex\obj\Debug\peopledex.exe
 D:\Documents\peopledex\obj\Debug\peopledex.pdb
+D:\Documents\peopledex\obj\Debug\Main.g.cs
+D:\Documents\peopledex\obj\Debug\Main.baml

@@ -23,31 +23,6 @@ namespace peopledex
         public MainWindow()
         {
             InitializeComponent();
-            ProfileEvent[] events = new ProfileEvent[]
-            {
-                new ProfileEvent { Date = "08/05/2018", Label = "Talked at Target", Description = "Talked to me about how his cat is dying. Cat's name is Hank." },
-                new ProfileEvent { Date = "14/04/2018", Label = "Facebook chat", Description = "Moving to Switzerland in June for 15 months to study" },
-                new ProfileEvent { Date = "01/04/2018", Label = "Lunch at Fazoli's", Description = "Brother (Troy) plays volleyball" }
-            };
-
-            foreach (ProfileEvent profileEvent in events)
-            {
-                ProfileEvents.Items.Add(profileEvent);
-
-            }
-
-            ProfileAccount[] accounts = new ProfileAccount[]
-            {
-                new ProfileAccount { Type = "Instagram", Name = "churrochurro88" },
-                new ProfileAccount { Type = "Facebook", Name = "https://www.facebook.com/tina.turner.4" },
-                new ProfileAccount { Type = "Website", Name = "https://rainydevil.net" }
-            };
-
-            foreach (ProfileAccount profileAccount in accounts)
-            {
-                ProfileAccounts.Items.Add(profileAccount);
-
-            }
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -60,17 +35,4 @@ namespace peopledex
 
         }
     }
-}
-
-public class ProfileEvent
-{
-    public string Date { get; set; }
-    public string Label { get; set; }
-    public string Description { get; set; }
-}
-
-public class ProfileAccount
-{
-    public string Type { get; set; }
-    public string Name { get; set; }
 }
