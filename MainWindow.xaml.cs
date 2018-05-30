@@ -86,6 +86,11 @@ namespace peopledex
                 Console.WriteLine(profile.Name);
             }
         }
+
+        private void ProfileListing_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
 }
