@@ -89,7 +89,11 @@ namespace peopledex
 
         private void ProfileListing_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var selectedItems = ProfileListing.SelectedItems;
+            foreach (Profile profile in selectedItems)
+            {
+                SetProfile(profile);
+            }
         }
     }
 

@@ -1,20 +1,20 @@
-﻿<Window x:Class="peopledex.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:peopledex"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="peopledex.MainWindow"
         mc:Ignorable="d"
-        Title="Main" Height="525.575" Width="869.309" Background="{x:Null}">
+        Title="Main" Height="632.575" Width="903.309" Background="{x:Null}">
     <Window.Resources>
-        <Style x:Key="Title" TargetType="Rectangle">
-        </Style>
+        <Style x:Key="Title" TargetType="{x:Type Rectangle}"/>
         <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
                         <Border BorderThickness="0,0,0,0" BorderBrush="Black" Background="#999">
-                            <TextBlock x:Name="ContentHeader" Text="{TemplateBinding Content}" Padding="5,6" Width="{TemplateBinding Width}" TextAlignment="Center" Foreground="#FAFBFD" FontFamily="Corbel" FontSize="12" />
+                            <TextBlock x:Name="ContentHeader" Text="{TemplateBinding Content}" Padding="5,6" Width="{TemplateBinding Width}" TextAlignment="Center" Foreground="#FAFBFD" FontFamily="Corbel" FontSize="10" />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -23,6 +23,72 @@
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontFamily" Value="Segoe UI" />
             <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#F39F1B"/>
+            <Setter Property="BorderBrush" Value="#E77F11"/>
+            <Setter Property="BorderThickness" Value="0,0,0,5"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Corbel"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Height" Value="31"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Height="{TemplateBinding Height}"  Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderThickness" Value="0,0,0,4"/>
+                    <Setter Property="Height" Value="30"/>
+                </Trigger>
+                <Trigger Property="Button.IsPressed" Value="True">
+                    <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                    <Setter Property="Height" Value="28"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type ListViewItem}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="3,5" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Border Name="Selection" Visibility="Collapsed" />
+                            <!-- This is used when GridView is put inside the ListView -->
+                            <GridViewRowPresenter Grid.RowSpan="2"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#ECECEC" />
+                    <Setter Property="Width" Value="277" />
+                    <Setter Property="Padding" Value="2,5" />
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="true" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="#DDD" />
+                    <Setter Property="Width" Value="277" />
+                    <Setter Property="Padding" Value="2,5" />
+                </MultiTrigger>
+            </Style.Triggers>
         </Style>
     </Window.Resources>
 
@@ -34,35 +100,37 @@
             <ColumnDefinition Width="341*" />
             <ColumnDefinition Width="520*" />
         </Grid.ColumnDefinitions>
-        <Grid HorizontalAlignment="Left" Height="475" VerticalAlignment="Top" Width="321" Margin="10,10,0,0">
+        <Rectangle Fill="#FF666666" HorizontalAlignment="Left" Height="606" Margin="-4,-4,0,0" Stroke="#CCC" StrokeThickness="0" VerticalAlignment="Top" Width="358"/>
+        <Grid HorizontalAlignment="Left" Height="549" VerticalAlignment="Top" Width="299" Margin="24,24,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="98*"/>
                 <RowDefinition Height="32*"/>
                 <RowDefinition Height="345*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="NewProfileButton" Content="New" HorizontalAlignment="Left" Margin="12,0,0,1" VerticalAlignment="Bottom" Width="52" Height="32" Click="NewProfileButton_Click" Background="#F39F1B" BorderBrush="#E88011" BorderThickness="0,0,0,5" Foreground="White" FontFamily="Corbel" FontWeight="Bold" FontSize="14" Padding="1,2,1,1" RenderTransformOrigin="0.526,1.458" Grid.RowSpan="2"/>
-            <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="31" Margin="88,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146" FontFamily="Corbel" Background="#FAFBFD" Foreground="#333" Padding="7,7,7,0" BorderBrush="#CCC"/>
-            <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="247,0,0,0" VerticalAlignment="Top" Width="64" Height="32"  Background="#F39F1B" BorderBrush="#E88011" BorderThickness="0,0,0,5" Foreground="White" FontFamily="Corbel" FontWeight="Bold" FontSize="14" Grid.Row="1" Padding="1,2,1,1"/>
+            <Button x:Name="NewProfileButton" Content="New" HorizontalAlignment="Left" Margin="12,0,0,5" VerticalAlignment="Bottom" Width="52" Click="NewProfileButton_Click"  Padding="1,2,1,1" RenderTransformOrigin="0.526,1.458" Grid.Row="1"/>
+            <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="31" Margin="96,1,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="128" FontFamily="Corbel" Background="#FAFBFD" Foreground="#333" Padding="7,7,7,0" BorderBrush="#CCC"/>
+            <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="229,0,0,5" VerticalAlignment="Bottom" Width="60"   Grid.Row="1" Padding="1,2,1,1"/>
 
-            <TextBlock HorizontalAlignment="Left" Margin="0,54,0,0" TextWrapping="Wrap" Text="Peopledex" VerticalAlignment="Top" FontFamily="Corbel" Foreground="#FF666666" Height="12" Width="321" TextAlignment="Center"/>
-            <TextBlock HorizontalAlignment="Left" Margin="0,28,0,0" TextWrapping="Wrap" Text="]" VerticalAlignment="Top" FontFamily="Wingdings" Foreground="#FF666666" Height="26" Width="321" TextAlignment="Center" FontSize="20" RenderTransformOrigin="0.473,0.615"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,44,0,0" TextWrapping="Wrap" Text="Peopledex" VerticalAlignment="Top" FontFamily="Corbel" Foreground="White" Height="19" Width="302" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,18,0,0" TextWrapping="Wrap" Text="]" VerticalAlignment="Top" FontFamily="Wingdings" Foreground="White" Height="26" Width="302" TextAlignment="Center" FontSize="20" RenderTransformOrigin="0.473,0.615"/>
 
-            <ListView x:Name="ProfileListing" Grid.Row="2" Foreground="#333" Background="#FAFBFD" BorderBrush="#CCC" SelectionChanged="ProfileListing_SelectionChanged" FontFamily="Corbel" Margin="12,10,10,10" Padding="-3,-1">\
+            <ListView x:Name="ProfileListing" Grid.Row="2" Foreground="#333" Background="#FAFBFD" SelectionChanged="ProfileListing_SelectionChanged" FontFamily="Corbel" Margin="12,10,10,10" Padding="-3,-1">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
                         <GridViewColumn Header="ENTRY" Width="80" DisplayMemberBinding="{Binding Id}" />
                         <GridViewColumn Header="NAME" Width="120" DisplayMemberBinding="{Binding Name}" />
                     </GridView>
                 </ListView.View>
+                <System:String>\</System:String>
             </ListView>
 
         </Grid>
-        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="475" VerticalAlignment="Top" Width="500" Margin="10,10,0,0">
+        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="549" VerticalAlignment="Top" Width="470" Margin="33,24,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <ListView x:Name="ProfileEvents" Grid.Row="1" Background="#FAFBFD" BorderBrush="#CCC" Height="182" VerticalAlignment="Top" Padding="-3,-1" Margin="10,10,12,0">
+            <ListView x:Name="ProfileEvents" Grid.Row="1" Background="#FAFBFD" BorderBrush="{x:Null}" Height="182" VerticalAlignment="Top" Padding="-3,-1" Margin="8,38,10,0">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
                         <GridViewColumn Header="DATE" Width="80" DisplayMemberBinding="{Binding Date}" />
@@ -71,26 +139,29 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Border BorderThickness="2" BorderBrush="#FF3B678D" Margin="12,10,331,81">
-                <Image x:Name="ProfileImage" HorizontalAlignment="Left" Height="147" VerticalAlignment="Top" Width="156" Stretch="UniformToFill" Margin="-2"/>
-            </Border>
-            <Button x:Name="PreviousProfileButton" Content="&lt;" HorizontalAlignment="Left" Margin="12,197,0,0" Grid.Row="1" VerticalAlignment="Top" Width="40" Height="32"  Background="#F39F1B" BorderBrush="#E88011" BorderThickness="0,0,0,5" Foreground="White" FontFamily="Corbel" FontWeight="Bold" FontSize="14" Padding="1"/>
-            <Button x:Name="NextProfileButton" Content="&gt;" HorizontalAlignment="Left" Margin="452,197,0,0" Grid.Row="1" VerticalAlignment="Top" Width="36" Height="32"   Background="#F39F1B" BorderBrush="#E88011" BorderThickness="0,0,0,5" Foreground="White" FontFamily="Corbel" FontWeight="Bold" FontSize="14"/>
-            <Button x:Name="EditProfileButton" Content="Edit" HorizontalAlignment="Left" Margin="63,197,0,0" Grid.Row="1" VerticalAlignment="Top" Width="60" Height="32"   Background="#F39F1B" BorderBrush="#E88011" BorderThickness="0,0,0,5" Foreground="White" FontFamily="Corbel" FontWeight="Bold" FontSize="14" Padding="1,2,1,1"/>
-            <Rectangle Fill="#FAFBFD" HorizontalAlignment="Left" Height="67" Stroke="#CCC" StrokeThickness="0" VerticalAlignment="Top" Width="478" Margin="10,171,0,0"/>
-            <TextBlock x:Name="ProfileDescription" HorizontalAlignment="Left" Margin="12,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="454" Padding="15,12" FontFamily="Corbel" FontSize="14"><Run Foreground="#333" Text="Test"/></TextBlock>
-            <TextBlock x:Name="ProfileNumber" HorizontalAlignment="Left" Margin="186,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Text="#000" Height="33" Padding="7,6,0,0" FontFamily="Corbel" Foreground="#FF3B678D"/>
-            <TextBlock x:Name="ProfileName" HorizontalAlignment="Left" Margin="231,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Text="-" Height="36" Foreground="#333" FontFamily="Corbel" FontSize="14" Padding="6,9,0,0"/>
-            <TextBlock HorizontalAlignment="Left" Margin="190,89,0,0" TextWrapping="Wrap" Text="Occupation" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="14" Foreground="#FF999999"/>
-            <TextBlock HorizontalAlignment="Left" Margin="190,110,0,0" TextWrapping="Wrap" Text="Birthday" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="14" Foreground="#FF999999"/>
-            <TextBlock HorizontalAlignment="Left" Margin="190,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" Height="21" FontFamily="Corbel" FontSize="14" Foreground="#FF999999"><Run Text="Location"/><LineBreak/><Run/></TextBlock>
-            <TextBlock HorizontalAlignment="Left" Margin="190,131,0,0" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="14" Foreground="#FF999999"/>
-            <TextBlock HorizontalAlignment="Left" Margin="190,150,0,0" TextWrapping="Wrap" Text="Dislikes" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="14" Foreground="#FFF" Visibility="Hidden"/>
-            <TextBlock x:Name="ProfileLocation" HorizontalAlignment="Left" Margin="270,68,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="14" Foreground="#333"/>
-            <TextBlock x:Name="ProfileOccupation" HorizontalAlignment="Left" Margin="270,89,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="14" Foreground="#333"/>
-            <TextBlock x:Name="ProfileBirthday" HorizontalAlignment="Left" Margin="270,110,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="14" Foreground="#333"/>
-            <TextBlock x:Name="ProfileLikes" HorizontalAlignment="Left" Margin="270,131,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="14" Foreground="#333"/>
-            <TextBlock x:Name="ProfileDislikes" HorizontalAlignment="Left" Margin="270,150,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="14" Foreground="#FFF" Visibility="Hidden"/>
+            <Image x:Name="ProfileImage" HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="132" Stretch="UniformToFill" Source="Resources/test.jpg" Margin="23,27,0,0">
+                <Image.Clip>
+                    <EllipseGeometry Center="66,66" RadiusX="66" RadiusY="66" />
+                </Image.Clip>
+            </Image>
+            <Button x:Name="PreviousProfileButton" Content="&lt;" HorizontalAlignment="Left" Margin="10,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="40"    Padding="1"/>
+            <Button x:Name="NextProfileButton" Content="&gt;" HorizontalAlignment="Left" Margin="424,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="36"    />
+            <Button x:Name="EditProfileButton" Content="Edit" HorizontalAlignment="Left" Margin="61,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="60"     Padding="1,2,1,1"/>
+            <Rectangle Fill="#FAFBFD" HorizontalAlignment="Left" Height="62" Stroke="#CCC" StrokeThickness="0" VerticalAlignment="Top" Width="450" Margin="10,212,0,0"/>
+            <TextBlock x:Name="ProfileDescription" HorizontalAlignment="Left" Margin="9,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" Width="451" Padding="15,12" FontFamily="Corbel" FontSize="12" Text="소과금30~ 100해서 복귀 다시 해볼려는대 꼭 필요한거 좀 추천좀 부탁드립니다. 소과금30~ 100해서 복귀 다시 해볼려는대 꼭 필요한거 좀 추천좀 부탁드립니다." Foreground="#FF666666"/>
+            <TextBlock x:Name="ProfileNumber" HorizontalAlignment="Left" Margin="195,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Text="#000" Height="19" FontFamily="Corbel" Foreground="#CCC" FontSize="10"/>
+            <TextBlock x:Name="ProfileName" HorizontalAlignment="Left" Margin="195,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Text="Chihiro Chan" Height="21" Foreground="#333" FontFamily="Corbel" FontSize="16" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Margin="195,102,0,0" TextWrapping="Wrap" Text="OCCUPATION" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="9" Foreground="#FF999999"/>
+            <TextBlock HorizontalAlignment="Left" Margin="195,126,0,0" TextWrapping="Wrap" Text="BIRTHDAY" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="9" Foreground="#FF999999"/>
+            <TextBlock HorizontalAlignment="Left" Margin="195,150,0,0" TextWrapping="Wrap" Text="LIKES" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="9" Foreground="#FF999999"/>
+            <TextBlock HorizontalAlignment="Left" Margin="190,150,0,0" TextWrapping="Wrap" Text="Dislikes" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="12" Foreground="#FFF" Visibility="Hidden"/>
+            <TextBlock x:Name="ProfileLocation" HorizontalAlignment="Left" Margin="195,65,0,0" TextWrapping="Wrap" Text="Omaha, NE" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="10" Foreground="#FF999999"/>
+            <TextBlock x:Name="ProfileOccupation" HorizontalAlignment="Left" Margin="269,99,0,0" TextWrapping="Wrap" Text="Student at UNL" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="12" Foreground="#333"/>
+            <TextBlock x:Name="ProfileBirthday" HorizontalAlignment="Left" Margin="269,123,0,0" TextWrapping="Wrap" Text="12/09/1990" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="12" Foreground="#333"/>
+            <TextBlock x:Name="ProfileLikes" HorizontalAlignment="Left" Margin="269,147,0,0" TextWrapping="Wrap" Text="Puppies, summer, haircuts" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="12" Foreground="#333"/>
+            <TextBlock x:Name="ProfileDislikes" HorizontalAlignment="Left" Margin="270,150,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="12" Foreground="#FFF" Visibility="Hidden"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="9" Foreground="#FF999999"><Run Text="DESCRIPTION"/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="EVENTS" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="9" Foreground="#FF999999" Margin="10,16,0,0" Grid.Row="1"/>
 
         </Grid>
     </Grid>
