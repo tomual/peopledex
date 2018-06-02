@@ -147,21 +147,26 @@
             <Button x:Name="NextProfileButton" Content="&gt;" HorizontalAlignment="Left" Margin="424,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="36"    />
             <Button x:Name="EditProfileButton" Content="Edit" HorizontalAlignment="Left" Margin="61,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="60"     Padding="1,2,1,1"/>
             <Rectangle Fill="#FAFBFD" HorizontalAlignment="Left" Height="62" Stroke="#CCC" StrokeThickness="0" VerticalAlignment="Top" Width="450" Margin="10,212,0,0"/>
-            <TextBlock x:Name="ProfileDescription" HorizontalAlignment="Left" Margin="9,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" Width="451" Padding="15,12" FontFamily="Corbel" FontSize="12" Text="소과금30~ 100해서 복귀 다시 해볼려는대 꼭 필요한거 좀 추천좀 부탁드립니다. 소과금30~ 100해서 복귀 다시 해볼려는대 꼭 필요한거 좀 추천좀 부탁드립니다." Foreground="#FF666666"/>
-            <TextBlock x:Name="ProfileNumber" HorizontalAlignment="Left" Margin="195,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Text="#000" Height="19" FontFamily="Corbel" Foreground="#CCC" FontSize="10"/>
-            <TextBlock x:Name="ProfileName" HorizontalAlignment="Left" Margin="195,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Text="Chihiro Chan" Height="21" Foreground="#333" FontFamily="Corbel" FontSize="16" FontWeight="Bold"/>
+            <TextBlock x:Name="ProfileDescription" HorizontalAlignment="Left" Margin="9,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" Width="451" Padding="15,12" FontFamily="Corbel" FontSize="12" Foreground="#FF666666"/>
+            <TextBlock x:Name="ProfileNumber" HorizontalAlignment="Left" Margin="195,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Text="-" Height="19" FontFamily="Corbel" Foreground="#CCC" FontSize="10"/>
+            <TextBlock x:Name="ProfileName" HorizontalAlignment="Left" Margin="195,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Text="-" Height="21" Foreground="#333" FontFamily="Corbel" FontSize="16" FontWeight="Bold"/>
             <TextBlock HorizontalAlignment="Left" Margin="195,102,0,0" TextWrapping="Wrap" Text="OCCUPATION" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="9" Foreground="#FF999999"/>
             <TextBlock HorizontalAlignment="Left" Margin="195,126,0,0" TextWrapping="Wrap" Text="BIRTHDAY" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="9" Foreground="#FF999999"/>
             <TextBlock HorizontalAlignment="Left" Margin="195,150,0,0" TextWrapping="Wrap" Text="LIKES" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="9" Foreground="#FF999999"/>
             <TextBlock HorizontalAlignment="Left" Margin="190,150,0,0" TextWrapping="Wrap" Text="Dislikes" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="12" Foreground="#FFF" Visibility="Hidden"/>
-            <TextBlock x:Name="ProfileLocation" HorizontalAlignment="Left" Margin="195,65,0,0" TextWrapping="Wrap" Text="Omaha, NE" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="10" Foreground="#FF999999"/>
-            <TextBlock x:Name="ProfileOccupation" HorizontalAlignment="Left" Margin="269,99,0,0" TextWrapping="Wrap" Text="Student at UNL" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="12" Foreground="#333"/>
-            <TextBlock x:Name="ProfileBirthday" HorizontalAlignment="Left" Margin="269,123,0,0" TextWrapping="Wrap" Text="12/09/1990" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="12" Foreground="#333"/>
-            <TextBlock x:Name="ProfileLikes" HorizontalAlignment="Left" Margin="269,147,0,0" TextWrapping="Wrap" Text="Puppies, summer, haircuts" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="12" Foreground="#333"/>
+            <TextBlock x:Name="ProfileLocation" HorizontalAlignment="Left" Margin="195,65,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="10" Foreground="#FF999999"/>
+            <TextBlock x:Name="ProfileOccupation" HorizontalAlignment="Left" Margin="269,99,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="12" Foreground="#333"/>
+            <TextBlock x:Name="ProfileBirthday" HorizontalAlignment="Left" Margin="269,123,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="12" Foreground="#333"/>
+            <TextBlock x:Name="ProfileLikes" HorizontalAlignment="Left" Margin="269,147,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="12" Foreground="#333"/>
             <TextBlock x:Name="ProfileDislikes" HorizontalAlignment="Left" Margin="270,150,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="12" Foreground="#FFF" Visibility="Hidden"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="9" Foreground="#FF999999"><Run Text="DESCRIPTION"/></TextBlock>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="EVENTS" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="9" Foreground="#FF999999" Margin="10,16,0,0" Grid.Row="1"/>
 
+        </Grid>
+        <Grid x:Name="WelcomeOverlay" Grid.Column="1" Margin="24,24,29,29">
+            <Rectangle Fill="White" HorizontalAlignment="Left" Height="549" VerticalAlignment="Top" Width="488"/>
+            <TextBlock HorizontalAlignment="Left" Margin="214,113,0,0" TextWrapping="Wrap" Text="]" VerticalAlignment="Top" FontFamily="Wingdings" FontSize="72" Foreground="#FF999999"/>
+            <TextBlock HorizontalAlignment="Left" Margin="165,198,0,0" TextWrapping="Wrap" Text="Create a new profile or select one from the list" VerticalAlignment="Top" Width="163" FontFamily="Corbel" FontSize="14" Foreground="#FF999999" TextAlignment="Center"/>
         </Grid>
     </Grid>
 </Window>

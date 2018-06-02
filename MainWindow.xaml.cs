@@ -26,6 +26,7 @@ namespace peopledex
 
         public MainWindow()
         {
+            Properties.Settings.Default.Reset();
             if (Properties.Settings.Default.ProfileList != null)
             {
                 ProfileList = Properties.Settings.Default.ProfileList;
@@ -84,6 +85,7 @@ namespace peopledex
 
         public void SetProfile(Profile profile)
         {
+            WelcomeOverlay.Visibility = Visibility.Hidden;
             if (File.Exists("profileImages.resx"))
             {
                 using (ResXResourceSet resxSet = new ResXResourceSet("profileImages.resx"))
