@@ -19,52 +19,47 @@ using System.Drawing;
 
 namespace peopledex
 {
+    enum FormMode { New, Edit };
     /// <summary>
-    /// Interaction logic for NewProfile.xaml
+    /// Interaction logic for ProfileForm.xaml
     /// </summary>
-    public partial class NewProfile : Window
+    public partial class ProfileForm : Window
     {
-        public NewProfile()
+        FormMode currentMode;
+
+        public ProfileForm()
         {
             InitializeComponent();
+            InitializeForm(FormMode.New);
+        }
 
-            //// Create a ResXResourceReader for the file items.resx.
-            //ResXResourceReader rsxr = new ResXResourceReader("en-AU.resx");
+        public ProfileForm(Profile profile)
+        {
+            InitializeComponent();
+            PrepopulateForm(profile);
+            InitializeForm(FormMode.Edit);
+        }
 
-            //// Create an IDictionaryEnumerator to iterate through the resources.
-            //IDictionaryEnumerator id = rsxr.GetEnumerator();
-
-            //// Iterate through the resources and display the contents to the console.
-            //foreach (DictionaryEntry d in rsxr)
-            //{
-            //    Console.WriteLine(d.Key.ToString() + ":\t" + d.Value.ToString());
-
-            //    System.Drawing.Image img = (System.Drawing.Image)d.Value;
-            //    using (MemoryStream memory = new MemoryStream())
-            //    {
-            //        img.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
-            //        memory.Position = 0;
-            //        BitmapImage bitmapimage = new BitmapImage();
-            //        bitmapimage.BeginInit();
-            //        bitmapimage.StreamSource = memory;
-            //        bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
-            //        bitmapimage.EndInit();
-
-            //        Preview.Source = bitmapimage;
-            //    }
-
-            //}
-
-            ////Close the reader.
-            //rsxr.Close();
+        private void InitializeForm(FormMode mode)
+        {
+            if (mode == FormMode.New)
+            {
+                currentMode = FormMode.New;
+                SubmitButton.Content = "Create";
+            }
+            else
+            {
+                currentMode = FormMode.Edit;
+                SubmitButton.Content = "Update";
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(ValidateNewProfileForm())
+            if (ValidateNewProfileForm())
             {
+                MainWindow main = (MainWindow)Application.Current.MainWindow;
                 Profile profile = new Profile();
-                profile.Id = 1;
                 profile.Name = NameInput.Text;
                 profile.Picture = PictureInput.Text;
                 profile.Location = LocationInput.Text;
@@ -73,12 +68,31 @@ namespace peopledex
                 profile.Likes = LikeInput.Text;
                 profile.Description = DescriptionInput.Text;
 
-                MainWindow main = (MainWindow)Application.Current.MainWindow;
-                main.AddProfile(profile);
-                main.SetProfile(profile);
+                if (currentMode == FormMode.New)
+                {
+                    main.AddProfile(profile);
+                }
+                else
+                {
+                    profile.Id = int.Parse(IdInput.Text);
+                    main.UpdateProfile(profile);
+                }
 
+                main.SetProfile(profile);
                 this.Close();
             }
+        }
+
+        private void PrepopulateForm(Profile profile)
+        {
+            IdInput.Text = profile.Id.ToString();
+            NameInput.Text = profile.Name;
+            PictureInput.Text = profile.Picture;
+            LocationInput.Text = profile.Location;
+            OccupationInput.Text = profile.Occupation;
+            BirthdayInput.Text = profile.Birthday;
+            LikeInput.Text = profile.Likes;
+            DescriptionInput.Text = profile.Description;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -94,7 +108,7 @@ namespace peopledex
             required.Add(LocationInput);
             required.Add(DescriptionInput);
 
-            foreach(TextBox requiredInput in required)
+            foreach (TextBox requiredInput in required)
             {
                 requiredInput.BorderBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFABADB3"));
                 ErrorLabel.Visibility = Visibility.Hidden;

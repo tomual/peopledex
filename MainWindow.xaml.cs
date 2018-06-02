@@ -23,10 +23,11 @@ namespace peopledex
     public partial class MainWindow : Window
     {
         List<Profile> ProfileList;
+        Profile currentProfile;
 
         public MainWindow()
         {
-            Properties.Settings.Default.Reset();
+            //Properties.Settings.Default.Reset();
             if (Properties.Settings.Default.ProfileList != null)
             {
                 ProfileList = Properties.Settings.Default.ProfileList;
@@ -37,14 +38,15 @@ namespace peopledex
             }
 
             InitializeComponent();
-            InitializeProfile();
+            RefreshProfileListing();
 
             Console.WriteLine(ProfileList.Count);
             Console.WriteLine(ProfileListing.Items.Count);
         }
 
-        private void InitializeProfile()
+        private void RefreshProfileListing()
         {
+            ProfileListing.Items.Clear();
             if (Properties.Settings.Default.ProfileList != null)
             {
                 foreach (Profile profile in ProfileList)
@@ -57,7 +59,7 @@ namespace peopledex
 
         private void NewProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            NewProfile newProfile = new NewProfile();
+            ProfileForm newProfile = new ProfileForm();
             newProfile.Show();
         }
 
@@ -75,12 +77,31 @@ namespace peopledex
             }
 
             ProfileList.Add(profile);
-            ProfileListing.Items.Add(profile);
             Properties.Settings.Default.ProfileList = ProfileList;
             Properties.Settings.Default.Save();
             Properties.Settings.Default.Test = profile.Name;
             Properties.Settings.Default.Save();
-            PrintProfileList();
+            RefreshProfileListing();
+        }
+
+        public void UpdateProfile(Profile profile)
+        {
+            int index = ProfileList.FindLastIndex(p => p.Id == profile.Id);
+            if (index != -1)
+            {
+                Console.WriteLine(ProfileList[index]);
+                ProfileList[index] = profile;
+
+                if (!string.IsNullOrEmpty(profile.Picture))
+                {
+                    System.Drawing.Image img = System.Drawing.Image.FromFile(profile.Picture);
+
+                    ResXResourceWriter rsxw = new ResXResourceWriter("profileImages.resx");
+                    rsxw.AddResource(profile.Id.ToString(), img);
+                    rsxw.Close();
+                }
+            }
+            RefreshProfileListing();
         }
 
         public void SetProfile(Profile profile)
@@ -124,6 +145,8 @@ namespace peopledex
             ProfileLikes.Text = profile.Likes;
             ProfileDislikes.Text = profile.Dislikes;
             ProfileDescription.Text = profile.Description;
+
+            currentProfile = profile;
         }
 
         private int GetNextId()
@@ -145,6 +168,15 @@ namespace peopledex
             foreach (Profile profile in selectedItems)
             {
                 SetProfile(profile);
+            }
+        }
+
+        private void EditProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(currentProfile != null)
+            {
+                ProfileForm editProfile = new ProfileForm(currentProfile);
+                editProfile.Show();
             }
         }
     }
