@@ -117,11 +117,10 @@
             <ListView x:Name="ProfileListing" Grid.Row="2" Foreground="#333" Background="#FAFBFD" SelectionChanged="ProfileListing_SelectionChanged" FontFamily="Corbel" Margin="12,10,10,10" Padding="-3,-1">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
-                        <GridViewColumn Header="ENTRY" Width="80" DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="ENTRY" Width="80" DisplayMemberBinding="{Binding Id, StringFormat='00,0.'}" />
                         <GridViewColumn Header="NAME" Width="120" DisplayMemberBinding="{Binding Name}" />
                     </GridView>
                 </ListView.View>
-                <System:String>\</System:String>
             </ListView>
 
         </Grid>
@@ -139,7 +138,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Image x:Name="ProfileImage" HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="132" Stretch="UniformToFill" Source="Resources/test.jpg" Margin="23,27,0,0">
+            <Image x:Name="ProfileImage" HorizontalAlignment="Left" Height="132" VerticalAlignment="Top" Width="132" Stretch="UniformToFill" Source="Resources/default.jpg" Margin="23,27,0,0">
                 <Image.Clip>
                     <EllipseGeometry Center="66,66" RadiusX="66" RadiusY="66" />
                 </Image.Clip>

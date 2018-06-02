@@ -37,6 +37,9 @@ namespace peopledex
 
             InitializeComponent();
             InitializeProfile();
+
+            Console.WriteLine(ProfileList.Count);
+            Console.WriteLine(ProfileListing.Items.Count);
         }
 
         private void InitializeProfile()
@@ -61,11 +64,14 @@ namespace peopledex
         {
             profile.Id = GetNextId();
 
-            System.Drawing.Image img = System.Drawing.Image.FromFile(profile.Picture);
+            if (!string.IsNullOrEmpty(profile.Picture))
+            {
+                System.Drawing.Image img = System.Drawing.Image.FromFile(profile.Picture);
 
-            ResXResourceWriter rsxw = new ResXResourceWriter("profileImages.resx");
-            rsxw.AddResource(profile.Id.ToString(), img);
-            rsxw.Close();
+                ResXResourceWriter rsxw = new ResXResourceWriter("profileImages.resx");
+                rsxw.AddResource(profile.Id.ToString(), img);
+                rsxw.Close();
+            }
 
             ProfileList.Add(profile);
             ProfileListing.Items.Add(profile);
@@ -83,23 +89,33 @@ namespace peopledex
                 using (ResXResourceSet resxSet = new ResXResourceSet("profileImages.resx"))
                 {
                     System.Drawing.Image img = (System.Drawing.Image)resxSet.GetObject(profile.Id.ToString(), true);
-                    using (MemoryStream memory = new MemoryStream())
+                    if (img != null)
                     {
-                        img.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
-                        memory.Position = 0;
-                        BitmapImage bitmapimage = new BitmapImage();
-                        bitmapimage.BeginInit();
-                        bitmapimage.StreamSource = memory;
-                        bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
-                        bitmapimage.EndInit();
+                        using (MemoryStream memory = new MemoryStream())
+                        {
+                            img.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+                            memory.Position = 0;
+                            BitmapImage bitmapimage = new BitmapImage();
+                            bitmapimage.BeginInit();
+                            bitmapimage.StreamSource = memory;
+                            bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
+                            bitmapimage.EndInit();
 
-                        ProfileImage.Source = bitmapimage;
+                            ProfileImage.Source = bitmapimage;
+                        }
+                    }
+                    else
+                    {
+                        ProfileImage.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/default.jpg"));
                     }
                 }
             }
-            ProfileNumber.Text = profile.Id.ToString();
+            else
+            {
+                ProfileImage.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/default.jpg"));
+            }
+            ProfileNumber.Text = "#" + profile.Id.ToString("D3");
             ProfileName.Text = profile.Name;
-            //ProfileImage.Source = new BitmapImage(new Uri(@"Resources\" + profile.Picture, UriKind.Relative));
             ProfileLocation.Text = profile.Location;
             ProfileOccupation.Text = profile.Occupation;
             ProfileBirthday.Text = profile.Birthday;
