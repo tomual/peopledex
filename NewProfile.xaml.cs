@@ -26,23 +26,52 @@ namespace peopledex
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Profile profile = new Profile();
-            profile.Id = "#014";
-            profile.Name = NameInput.Text;
-            profile.Picture = PictureInput.Text;
-            profile.Location = LocationInput.Text;
-            profile.Occupation = OccupationInput.Text;
-            profile.Birthday = BirthdayInput.Text;
-            profile.Likes = LikeInput.Text;
-            profile.Dislikes = DislikesInput.Text;
-            profile.Description = DescriptionInput.Text;
+            if(ValidateNewProfileForm())
+            {
+                Profile profile = new Profile();
+                profile.Id = "#014";
+                profile.Name = NameInput.Text;
+                profile.Picture = PictureInput.Text;
+                profile.Location = LocationInput.Text;
+                profile.Occupation = OccupationInput.Text;
+                profile.Birthday = BirthdayInput.Text;
+                profile.Likes = LikeInput.Text;
+                profile.Description = DescriptionInput.Text;
 
-            MainWindow main = (MainWindow)Application.Current.MainWindow;
-            main.AddProfile(profile);
-            main.SetProfile(profile);
+                MainWindow main = (MainWindow)Application.Current.MainWindow;
+                main.AddProfile(profile);
+                main.SetProfile(profile);
 
+                this.Close();
+            }
+        }
 
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
+        }
+
+        private bool ValidateNewProfileForm()
+        {
+            bool valid = true;
+            List<TextBox> required = new List<TextBox>();
+            required.Add(NameInput);
+            required.Add(LocationInput);
+            required.Add(DescriptionInput);
+
+            foreach(TextBox requiredInput in required)
+            {
+                requiredInput.BorderBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFABADB3"));
+                ErrorLabel.Visibility = Visibility.Hidden;
+                if (string.IsNullOrEmpty(requiredInput.Text))
+                {
+                    valid = false;
+                    ErrorLabel.Visibility = Visibility.Visible;
+                    requiredInput.BorderBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#D26759"));
+                }
+            }
+
+            return valid;
         }
     }
 }
