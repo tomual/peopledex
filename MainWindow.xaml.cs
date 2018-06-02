@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -57,6 +59,14 @@ namespace peopledex
 
         public void AddProfile(Profile profile)
         {
+            profile.Id = GetNextId();
+
+            System.Drawing.Image img = System.Drawing.Image.FromFile(profile.Picture);
+
+            ResXResourceWriter rsxw = new ResXResourceWriter("profileImages.resx");
+            rsxw.AddResource(profile.Id.ToString(), img);
+            rsxw.Close();
+
             ProfileList.Add(profile);
             ProfileListing.Items.Add(profile);
             Properties.Settings.Default.ProfileList = ProfileList;
@@ -68,15 +78,39 @@ namespace peopledex
 
         public void SetProfile(Profile profile)
         {
-            ProfileNumber.Text = profile.Id;
+            if (File.Exists("profileImages.resx"))
+            {
+                using (ResXResourceSet resxSet = new ResXResourceSet("profileImages.resx"))
+                {
+                    System.Drawing.Image img = (System.Drawing.Image)resxSet.GetObject(profile.Id.ToString(), true);
+                    using (MemoryStream memory = new MemoryStream())
+                    {
+                        img.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+                        memory.Position = 0;
+                        BitmapImage bitmapimage = new BitmapImage();
+                        bitmapimage.BeginInit();
+                        bitmapimage.StreamSource = memory;
+                        bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmapimage.EndInit();
+
+                        ProfileImage.Source = bitmapimage;
+                    }
+                }
+            }
+            ProfileNumber.Text = profile.Id.ToString();
             ProfileName.Text = profile.Name;
-            ProfileImage.Source = new BitmapImage(new Uri(@"Resources\" + profile.Picture, UriKind.Relative));
+            //ProfileImage.Source = new BitmapImage(new Uri(@"Resources\" + profile.Picture, UriKind.Relative));
             ProfileLocation.Text = profile.Location;
             ProfileOccupation.Text = profile.Occupation;
             ProfileBirthday.Text = profile.Birthday;
             ProfileLikes.Text = profile.Likes;
             ProfileDislikes.Text = profile.Dislikes;
             ProfileDescription.Text = profile.Description;
+        }
+
+        private int GetNextId()
+        {
+            return ProfileList.Count + 1;
         }
 
         public void PrintProfileList()
@@ -101,7 +135,7 @@ namespace peopledex
 
 public class Profile
 {
-    public string Id { get; set; }
+    public int Id { get; set; }
     public string Name { get; set; }
     public string Picture { get; set; }
     public string Location { get; set; }
