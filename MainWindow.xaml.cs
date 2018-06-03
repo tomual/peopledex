@@ -27,7 +27,7 @@ namespace peopledex
 
         public MainWindow()
         {
-            Properties.Settings.Default.Reset();
+            //Properties.Settings.Default.Reset();
             if (Properties.Settings.Default.ProfileList != null)
             {
                 ProfileList = Properties.Settings.Default.ProfileList;
@@ -53,6 +53,18 @@ namespace peopledex
                 {
                     ProfileListing.Items.Add(profile);
                     SetProfile(profile);
+                }
+            }
+        }
+
+        private void RefreshProfileEventsListing()
+        {
+            ProfileEventsListing.Items.Clear();
+            if(currentProfile.ProfileEvents != null)
+            {
+                foreach (ProfileEvent profileEvent in currentProfile.ProfileEvents)
+                {
+                    ProfileEventsListing.Items.Add(profileEvent);
                 }
             }
         }
@@ -154,10 +166,26 @@ namespace peopledex
             ProfileOccupation.Text = profile.Occupation;
             ProfileBirthday.Text = profile.Birthday;
             ProfileLikes.Text = profile.Likes;
-            ProfileDislikes.Text = profile.Dislikes;
             ProfileDescription.Text = profile.Description;
 
             currentProfile = profile;
+            RefreshProfileEventsListing();
+        }
+
+        public void AddEvent(int Id, ProfileEvent profileEvent)
+        {
+            int index = ProfileList.FindLastIndex(p => p.Id == Id);
+            if (index != -1)
+            {
+                Console.WriteLine(ProfileList[index].Name);
+                Console.WriteLine(profileEvent.Title);
+                if(ProfileList[index].ProfileEvents == null)
+                {
+                    ProfileList[index].ProfileEvents = new List<ProfileEvent>();
+                }
+                ProfileList[index].ProfileEvents.Add(profileEvent);
+            }
+            SetProfile(ProfileList[index]);
         }
 
         private int GetNextId()
@@ -190,6 +218,12 @@ namespace peopledex
                 editProfile.Show();
             }
         }
+
+        private void NewEventButton_Click(object sender, RoutedEventArgs e)
+        {
+            EventForm newEvent = new EventForm(currentProfile.Id);
+            newEvent.Show();
+        }
     }
 }
 
@@ -202,8 +236,8 @@ public class Profile
     public string Occupation { get; set; }
     public string Birthday { get; set; }
     public string Likes { get; set; }
-    public string Dislikes { get; set; }
     public string Description { get; set; }
+    public List<ProfileEvent> ProfileEvents { get; set; }
 }
 
 public class ProfileEvent

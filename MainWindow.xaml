@@ -129,7 +129,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <ListView x:Name="ProfileEvents" Grid.Row="1" Background="#FAFBFD" BorderBrush="{x:Null}" Height="182" VerticalAlignment="Top" Padding="-3,-1" Margin="8,38,10,0">
+            <ListView x:Name="ProfileEventsListing" Grid.Row="1" Background="#FAFBFD" BorderBrush="{x:Null}" Height="182" VerticalAlignment="Top" Padding="-3,-1" Margin="8,38,10,0">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
                         <GridViewColumn Header="DATE" Width="80" DisplayMemberBinding="{Binding Date}" />
@@ -161,9 +161,10 @@
             <TextBlock x:Name="ProfileDislikes" HorizontalAlignment="Left" Margin="270,150,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="12" Foreground="#FFF" Visibility="Hidden"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="9" Foreground="#FF999999"><Run Text="DESCRIPTION"/></TextBlock>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="EVENTS" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="9" Foreground="#FF999999" Margin="10,16,0,0" Grid.Row="1"/>
+            <Button x:Name="NewEventButton" Content="New Event" HorizontalAlignment="Left" Margin="395,0,0,240" Grid.Row="1" VerticalAlignment="Bottom" Width="65"     Padding="1,2,1,1" Click="NewEventButton_Click" Height="23" FontSize="10" Background="#FFCCCCCC" BorderBrush="#FFAEAEAE" Foreground="#FF666666"/>
 
         </Grid>
-        <Grid x:Name="WelcomeOverlay" Grid.Column="1" Margin="24,24,29,29">
+        <Grid x:Name="WelcomeOverlay" Grid.Column="1" Margin="24,24,29,29" Visibility="Hidden">
             <Rectangle Fill="White" HorizontalAlignment="Left" Height="549" VerticalAlignment="Top" Width="488"/>
             <TextBlock HorizontalAlignment="Left" Margin="214,113,0,0" TextWrapping="Wrap" Text="]" VerticalAlignment="Top" FontFamily="Wingdings" FontSize="72" Foreground="#FF999999"/>
             <TextBlock HorizontalAlignment="Left" Margin="165,198,0,0" TextWrapping="Wrap" Text="Create a new profile or select one from the list" VerticalAlignment="Top" Width="163" FontFamily="Corbel" FontSize="14" Foreground="#FF999999" TextAlignment="Center"/>

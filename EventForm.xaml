@@ -1,11 +1,12 @@
-﻿<Window x:Class="peopledex.ProfileForm"
+﻿<Window x:Class="peopledex.EventForm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:peopledex"
         mc:Ignorable="d"
-        Title="ProfileForm" Height="512" Width="421">
+        Title="EventForm" Height="354.667" Width="429.334">
+
     <Window.Resources>
         <Style x:Key="Title" TargetType="{x:Type Rectangle}"/>
         <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
@@ -64,35 +65,25 @@
             <Setter Property="Padding" Value="5"/>
         </Style>
     </Window.Resources>
+
     <Grid Margin="21,21,26,31">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="51*"/>
             <ColumnDefinition Width="95*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="NAME" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel"/>
-        <Label Content="LOCATION" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel"/>
-        <Label Content="OCCUPATION" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel"/>
-        <Label Content="BIRTHDAY" HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel"/>
-        <Label Content="LIKES" HorizontalAlignment="Left" Margin="10,185,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel"/>
-        <Label Content="DESCRIPTION" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel"/>
-        <Label Content="PICTURE" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel"/>
-        <TextBox x:Name="NameInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="Wrap"/>
-        <TextBox x:Name="PictureInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,45,0,0" Width="156" IsEnabled="False"/>
-        <TextBox x:Name="LocationInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,80,0,0" TextWrapping="Wrap"/>
-        <TextBox x:Name="OccupationInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,115,0,0" TextWrapping="Wrap" />
-        <TextBox x:Name="BirthdayInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,150,0,0" TextWrapping="Wrap"/>
-        <TextBox x:Name="LikeInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,185,0,0" TextWrapping="Wrap"/>
-        <TextBox x:Name="DescriptionInput" Grid.Column="1" HorizontalAlignment="Left" Height="102" Margin="0,220,0,0" TextWrapping="Wrap" AcceptsReturn="True"/>
+        <Label Content="TITLE" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel"/>
+        <Label Content="DATE" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel"/>
+        <Label Content="DESCRIPTION" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel"/>
+        <TextBox x:Name="TitleInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="Wrap"/>
+        <TextBox x:Name="DateInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,43,0,0" TextWrapping="Wrap"/>
+        <TextBox x:Name="DescriptionInput" Grid.Column="1" HorizontalAlignment="Left" Height="102" Margin="0,78,0,0" TextWrapping="Wrap" AcceptsReturn="True"/>
         <Button x:Name="SubmitButton" Content="Create" Grid.Column="1" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Bottom" Width="75" Click="Button_Click"/>
         <Button x:Name="CancelButton" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Bottom" Width="75" Background="#FFCCCCCC" BorderBrush="#FF999999" Foreground="#FF666666" RenderTransformOrigin="0.653,0.516" Click="CancelButton_Click"/>
         <Label x:Name="ErrorLabel" Content="Please fill required values." Grid.Column="1" HorizontalAlignment="Right" Margin="0,358,13,0" VerticalAlignment="Top" Foreground="#FFD26759" Visibility="Hidden"/>
-        <Label Content="*" HorizontalAlignment="Left" Margin="46,10,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel" Foreground="#FFD26759"/>
-        <Label Content="*" HorizontalAlignment="Left" Margin="71,80,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel" Foreground="#FFD26759" Grid.ColumnSpan="2"/>
-        <Label Content="*" HorizontalAlignment="Left" Margin="86,220,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel" Foreground="#FFD26759" Grid.ColumnSpan="2"/>
-        <Button Content="Browse" Grid.Column="1" HorizontalAlignment="Left" Margin="161,45,0,0" VerticalAlignment="Top" Width="64" Height="28" Background="#FFCCCCCC" BorderBrush="#FF999999" Foreground="#FF666666" Click="Button_Click_1"/>
-        <Image x:Name="Preview" HorizontalAlignment="Left" Height="100" Margin="10,319,0,0" VerticalAlignment="Top" Width="100"/>
-        <TextBox x:Name="IdInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,327,0,0" TextWrapping="Wrap" Visibility="Hidden"/>
-        <Button x:Name="DeleteProfileButton" Content="Delete Profile" HorizontalAlignment="Left" Margin="111,0,0,0" VerticalAlignment="Bottom" Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" RenderTransformOrigin="0.653,0.516" Click="DeleteProfileButton_Click" Grid.ColumnSpan="2" FontWeight="Normal"/>
-
+        <Label Content="*" HorizontalAlignment="Left" Margin="43,10,0,0" VerticalAlignment="Top" Width="35" FontFamily="Corbel" Foreground="#FFD26759"/>
+        <Label Content="*" HorizontalAlignment="Left" Margin="39,43,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel" Foreground="#FFD26759"/>
+        <Label Content="*" HorizontalAlignment="Left" Margin="86,78,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel" Foreground="#FFD26759" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="IdInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,185,0,0" TextWrapping="Wrap" Visibility="Hidden"/>
+        <Button x:Name="DeleteEventButton" Content="Delete Event" HorizontalAlignment="Left" Margin="114,0,0,0" VerticalAlignment="Bottom" Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" RenderTransformOrigin="0.653,0.516" Click="DeleteEventButton_Click" Grid.ColumnSpan="2" FontWeight="Normal"/>
     </Grid>
 </Window>

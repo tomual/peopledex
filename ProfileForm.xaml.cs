@@ -45,6 +45,7 @@ namespace peopledex
             if (mode == FormMode.New)
             {
                 currentMode = FormMode.New;
+                DeleteProfileButton.Visibility = Visibility.Hidden;
                 SubmitButton.Content = "Create";
             }
             else
