@@ -92,6 +92,7 @@
         <Button Content="Browse" Grid.Column="1" HorizontalAlignment="Left" Margin="161,45,0,0" VerticalAlignment="Top" Width="64" Height="28" Background="#FFCCCCCC" BorderBrush="#FF999999" Foreground="#FF666666" Click="Button_Click_1"/>
         <Image x:Name="Preview" HorizontalAlignment="Left" Height="100" Margin="10,319,0,0" VerticalAlignment="Top" Width="100"/>
         <TextBox x:Name="IdInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,327,0,0" TextWrapping="Wrap"/>
+        <Button x:Name="DeleteProfileButton" Content="Delete Profile" HorizontalAlignment="Left" Margin="111,0,0,0" VerticalAlignment="Bottom" Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" RenderTransformOrigin="0.653,0.516" Click="DeleteProfileButton_Click" Grid.ColumnSpan="2" FontWeight="Normal"/>
 
     </Grid>
 </Window>

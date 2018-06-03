@@ -48,13 +48,13 @@ namespace peopledex.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Test {
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int Id {
             get {
-                return ((string)(this["Test"]));
+                return ((int)(this["Id"]));
             }
             set {
-                this["Test"] = value;
+                this["Id"] = value;
             }
         }
     }

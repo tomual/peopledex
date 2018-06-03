@@ -27,7 +27,7 @@ namespace peopledex
 
         public MainWindow()
         {
-            //Properties.Settings.Default.Reset();
+            Properties.Settings.Default.Reset();
             if (Properties.Settings.Default.ProfileList != null)
             {
                 ProfileList = Properties.Settings.Default.ProfileList;
@@ -78,8 +78,7 @@ namespace peopledex
 
             ProfileList.Add(profile);
             Properties.Settings.Default.ProfileList = ProfileList;
-            Properties.Settings.Default.Save();
-            Properties.Settings.Default.Test = profile.Name;
+            Properties.Settings.Default.Id = ProfileList.Count + 1;
             Properties.Settings.Default.Save();
             RefreshProfileListing();
         }
@@ -100,6 +99,18 @@ namespace peopledex
                     rsxw.AddResource(profile.Id.ToString(), img);
                     rsxw.Close();
                 }
+            }
+            RefreshProfileListing();
+        }
+
+        public void DeleteProfile(int Id)
+        {
+            int index = ProfileList.FindLastIndex(p => p.Id == Id);
+            if (index != -1)
+            {
+                Console.WriteLine(ProfileList[index]);
+                ProfileList.RemoveAt(index);
+
             }
             RefreshProfileListing();
         }
@@ -151,7 +162,7 @@ namespace peopledex
 
         private int GetNextId()
         {
-            return ProfileList.Count + 1;
+            return Properties.Settings.Default.Id;
         }
 
         public void PrintProfileList()
@@ -173,14 +184,13 @@ namespace peopledex
 
         private void EditProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            if(currentProfile != null)
+            if (currentProfile != null)
             {
                 ProfileForm editProfile = new ProfileForm(currentProfile);
                 editProfile.Show();
             }
         }
     }
-
 }
 
 public class Profile

@@ -146,5 +146,11 @@ namespace peopledex
 
             }
         }
+
+        private void DeleteProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = (MainWindow)Application.Current.MainWindow;
+            main.DeleteProfile(int.Parse(IdInput.Text));
+        }
     }
 }
