@@ -27,7 +27,7 @@ namespace peopledex
 
         public MainWindow()
         {
-            Properties.Settings.Default.Reset();
+            //Properties.Settings.Default.Reset();
             if (Properties.Settings.Default.ProfileList != null)
             {
                 ProfileList = Properties.Settings.Default.ProfileList;
@@ -39,6 +39,8 @@ namespace peopledex
 
             InitializeComponent();
             RefreshProfileListing();
+
+            currentProfile = ProfileList[ProfileList.Count - 1];
 
             Console.WriteLine(ProfileList.Count);
             Console.WriteLine(ProfileListing.Items.Count);
@@ -52,7 +54,6 @@ namespace peopledex
                 foreach (Profile profile in ProfileList)
                 {
                     ProfileListing.Items.Add(profile);
-                    SetProfile(profile);
                 }
             }
         }
@@ -112,7 +113,22 @@ namespace peopledex
                     rsxw.Close();
                 }
             }
+            Properties.Settings.Default.ProfileList = ProfileList;
+            Properties.Settings.Default.Save();
             RefreshProfileListing();
+        }
+
+        public void UpdateProfileEvent(ProfileEvent profileEvent)
+        {
+            int index = currentProfile.ProfileEvents.FindLastIndex(p => p.Id == profileEvent.Id);
+            if (index != -1)
+            {
+                Console.WriteLine(ProfileList[index]);
+                currentProfile.ProfileEvents[index] = profileEvent;
+                UpdateProfile(currentProfile);
+            }
+            RefreshProfileListing();
+            SetProfile(currentProfile);
         }
 
         public void DeleteProfile(int Id)
@@ -184,6 +200,7 @@ namespace peopledex
                 }
                 ProfileList[index].ProfileEvents.Add(profileEvent);
             }
+            UpdateProfile(ProfileList[index]);
             SetProfile(ProfileList[index]);
             Console.WriteLine(profileEvent.Id);
         }
@@ -195,7 +212,7 @@ namespace peopledex
 
         private int GetNextProfileEventId()
         {
-            if(currentProfile.ProfileEvents != null)
+            if(currentProfile.ProfileEvents != null && currentProfile.ProfileEvents.Count > 0 )
             {
                 int index = currentProfile.ProfileEvents.Count - 1;
                 return currentProfile.ProfileEvents[index].Id + 1;
@@ -237,8 +254,12 @@ namespace peopledex
 
         private void ProfileEventsListing_DoubleClick(object sender, RoutedEventArgs e)
         {
-            EventForm newEvent = new EventForm(currentProfile.Id);
-            newEvent.Show();
+            var selectedItems = ProfileEventsListing.SelectedItems;
+            foreach (ProfileEvent profileEvent in selectedItems)
+            {
+                EventForm editEvent = new EventForm(currentProfile.Id, profileEvent);
+                editEvent.Show();
+            }
         }
     }
 }

@@ -19,12 +19,12 @@ using System.Drawing;
 
 namespace peopledex
 {
-    enum FormMode { New, Edit };
     /// <summary>
     /// Interaction logic for ProfileForm.xaml
     /// </summary>
     public partial class ProfileForm : Window
     {
+        enum FormMode { New, Edit };
         FormMode currentMode;
 
         public ProfileForm()
