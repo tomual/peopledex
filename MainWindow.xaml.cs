@@ -27,7 +27,7 @@ namespace peopledex
 
         public MainWindow()
         {
-            //Properties.Settings.Default.Reset();
+            Properties.Settings.Default.Reset();
             if (Properties.Settings.Default.ProfileList != null)
             {
                 ProfileList = Properties.Settings.Default.ProfileList;
@@ -77,7 +77,7 @@ namespace peopledex
 
         public void AddProfile(Profile profile)
         {
-            profile.Id = GetNextId();
+            profile.Id = GetNextProfileId();
 
             if (!string.IsNullOrEmpty(profile.Picture))
             {
@@ -177,8 +177,7 @@ namespace peopledex
             int index = ProfileList.FindLastIndex(p => p.Id == Id);
             if (index != -1)
             {
-                Console.WriteLine(ProfileList[index].Name);
-                Console.WriteLine(profileEvent.Title);
+                profileEvent.Id = GetNextProfileEventId();
                 if(ProfileList[index].ProfileEvents == null)
                 {
                     ProfileList[index].ProfileEvents = new List<ProfileEvent>();
@@ -186,11 +185,22 @@ namespace peopledex
                 ProfileList[index].ProfileEvents.Add(profileEvent);
             }
             SetProfile(ProfileList[index]);
+            Console.WriteLine(profileEvent.Id);
         }
 
-        private int GetNextId()
+        private int GetNextProfileId()
         {
             return Properties.Settings.Default.Id;
+        }
+
+        private int GetNextProfileEventId()
+        {
+            if(currentProfile.ProfileEvents != null)
+            {
+                int index = currentProfile.ProfileEvents.Count - 1;
+                return currentProfile.ProfileEvents[index].Id + 1;
+            }
+            return 1;
         }
 
         public void PrintProfileList()
@@ -224,6 +234,12 @@ namespace peopledex
             EventForm newEvent = new EventForm(currentProfile.Id);
             newEvent.Show();
         }
+
+        private void ProfileEventsListing_DoubleClick(object sender, RoutedEventArgs e)
+        {
+            EventForm newEvent = new EventForm(currentProfile.Id);
+            newEvent.Show();
+        }
     }
 }
 
@@ -242,6 +258,7 @@ public class Profile
 
 public class ProfileEvent
 {
+    public int Id { get; set; }
     public string Date { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
