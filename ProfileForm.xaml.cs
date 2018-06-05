@@ -64,6 +64,7 @@ namespace peopledex
                 profile.Name = NameInput.Text;
                 profile.Picture = PictureInput.Text;
                 profile.Location = LocationInput.Text;
+                profile.Email = EmailInput.Text;
                 profile.Occupation = OccupationInput.Text;
                 profile.Birthday = BirthdayInput.Text;
                 profile.Likes = LikeInput.Text;
@@ -90,6 +91,7 @@ namespace peopledex
             NameInput.Text = profile.Name;
             PictureInput.Text = profile.Picture;
             LocationInput.Text = profile.Location;
+            EmailInput.Text = profile.Email;
             OccupationInput.Text = profile.Occupation;
             BirthdayInput.Text = profile.Birthday;
             LikeInput.Text = profile.Likes;

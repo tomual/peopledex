@@ -40,10 +40,10 @@ namespace peopledex
             InitializeComponent();
             RefreshProfileListing();
 
-            currentProfile = ProfileList[ProfileList.Count - 1];
-
-            Console.WriteLine(ProfileList.Count);
-            Console.WriteLine(ProfileListing.Items.Count);
+            if(ProfileList.Count > 0)
+            {
+                currentProfile = ProfileList[ProfileList.Count - 1];
+            }
         }
 
         private void RefreshProfileListing()
@@ -178,7 +178,11 @@ namespace peopledex
             }
             ProfileNumber.Text = "#" + profile.Id.ToString("D3");
             ProfileName.Text = profile.Name;
-            ProfileLocation.Text = profile.Location;
+            ProfileSubtext.Text = profile.Location;
+            if(!string.IsNullOrEmpty(profile.Email))
+            {
+                ProfileSubtext.Text += "  ·  " + profile.Email;
+            }
             ProfileOccupation.Text = profile.Occupation;
             ProfileBirthday.Text = profile.Birthday;
             ProfileLikes.Text = profile.Likes;
@@ -270,6 +274,7 @@ public class Profile
     public string Name { get; set; }
     public string Picture { get; set; }
     public string Location { get; set; }
+    public string Email { get; set; }
     public string Occupation { get; set; }
     public string Birthday { get; set; }
     public string Likes { get; set; }
