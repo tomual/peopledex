@@ -146,6 +146,7 @@ namespace peopledex
             }
             SaveToStorage();
             RefreshProfileListing();
+            WelcomeOverlay.Visibility = Visibility.Visible;
         }
 
         public void DeleteProfileEvent(int Id)
@@ -302,6 +303,32 @@ namespace peopledex
             else
             {
                 RefreshProfileListing();
+            }
+        }
+
+        private void NextProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            int index = ProfileList.FindLastIndex(p => p.Id == currentProfile.Id);
+            if (index != -1)
+            {
+                if(index != ProfileList.Count - 1)
+                {
+                    SetProfile(ProfileList[index + 1]);
+                    ProfileListing.SelectedItem = ProfileListing.Items[index + 1];
+                }
+            }
+        }
+
+        private void PreviousProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            int index = ProfileList.FindLastIndex(p => p.Id == currentProfile.Id);
+            if (index != -1)
+            {
+                if (index != 0)
+                {
+                    SetProfile(ProfileList[index - 1]);
+                    ProfileListing.SelectedItem = ProfileListing.Items[index - 1];
+                }
             }
         }
     }

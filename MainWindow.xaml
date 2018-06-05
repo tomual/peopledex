@@ -140,8 +140,8 @@
                     <EllipseGeometry Center="66,66" RadiusX="66" RadiusY="66" />
                 </Image.Clip>
             </Image>
-            <Button x:Name="PreviousProfileButton" Content="&lt;" HorizontalAlignment="Left" Margin="10,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="40"    Padding="1"/>
-            <Button x:Name="NextProfileButton" Content="&gt;" HorizontalAlignment="Left" Margin="424,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="36"    />
+            <Button x:Name="PreviousProfileButton" Content="&lt;" HorizontalAlignment="Left" Margin="10,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="40"    Padding="1" Click="PreviousProfileButton_Click"/>
+            <Button x:Name="NextProfileButton" Content="&gt;" HorizontalAlignment="Left" Margin="424,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="36" Click="NextProfileButton_Click"    />
             <Button x:Name="EditProfileButton" Content="Edit" HorizontalAlignment="Left" Margin="61,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="60"     Padding="1,2,1,1" Click="EditProfileButton_Click"/>
             <Rectangle Fill="#FAFBFD" HorizontalAlignment="Left" Height="62" Stroke="#CCC" StrokeThickness="0" VerticalAlignment="Top" Width="450" Margin="10,212,0,0"/>
             <TextBlock x:Name="ProfileDescription" HorizontalAlignment="Left" Margin="9,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" Width="451" Padding="15,12" FontFamily="Corbel" FontSize="12" Foreground="#FF666666"/>
@@ -161,7 +161,7 @@
             <Button x:Name="NewEventButton" Content="New Event" HorizontalAlignment="Left" Margin="395,0,0,240" Grid.Row="1" VerticalAlignment="Bottom" Width="65"     Padding="1,2,1,1" Click="NewEventButton_Click" Height="23" FontSize="10" Background="#FFCCCCCC" BorderBrush="#FFAEAEAE" Foreground="#FF666666"/>
 
         </Grid>
-        <Grid x:Name="WelcomeOverlay" Grid.Column="1" Margin="24,24,29,29">
+        <Grid x:Name="WelcomeOverlay" Grid.Column="1" Margin="24,24,29,29" Visibility="Hidden">
             <Rectangle Fill="White" HorizontalAlignment="Left" Height="549" VerticalAlignment="Top" Width="488"/>
             <TextBlock HorizontalAlignment="Left" Margin="214,113,0,0" TextWrapping="Wrap" Text="]" VerticalAlignment="Top" FontFamily="Wingdings" FontSize="72" Foreground="#FF999999"/>
             <TextBlock HorizontalAlignment="Left" Margin="165,198,0,0" TextWrapping="Wrap" Text="Create a new profile or select one from the list" VerticalAlignment="Top" Width="163" FontFamily="Corbel" FontSize="14" Foreground="#FF999999" TextAlignment="Center"/>
