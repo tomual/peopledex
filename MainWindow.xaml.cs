@@ -90,9 +90,8 @@ namespace peopledex
             }
 
             ProfileList.Add(profile);
-            Properties.Settings.Default.ProfileList = ProfileList;
             Properties.Settings.Default.Id = ProfileList.Count + 1;
-            Properties.Settings.Default.Save();
+            SaveToStorage();
             RefreshProfileListing();
         }
 
@@ -113,9 +112,14 @@ namespace peopledex
                     rsxw.Close();
                 }
             }
+            SaveToStorage();
+            RefreshProfileListing();
+        }
+
+        private void SaveToStorage()
+        {
             Properties.Settings.Default.ProfileList = ProfileList;
             Properties.Settings.Default.Save();
-            RefreshProfileListing();
         }
 
         public void UpdateProfileEvent(ProfileEvent profileEvent)
@@ -140,7 +144,20 @@ namespace peopledex
                 ProfileList.RemoveAt(index);
 
             }
+            SaveToStorage();
             RefreshProfileListing();
+        }
+
+        public void DeleteProfileEvent(int Id)
+        {
+            int index = currentProfile.ProfileEvents.FindLastIndex(p => p.Id == Id);
+            if (index != -1)
+            {
+                currentProfile.ProfileEvents.RemoveAt(index);
+                UpdateProfile(currentProfile);
+                SaveToStorage();
+            }
+            SetProfile(currentProfile);
         }
 
         public void SetProfile(Profile profile)
@@ -263,6 +280,28 @@ namespace peopledex
             {
                 EventForm editEvent = new EventForm(currentProfile.Id, profileEvent);
                 editEvent.Show();
+            }
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(!string.IsNullOrEmpty(SearchInput.Text))
+            {
+                ProfileListing.Items.Clear();
+                if (Properties.Settings.Default.ProfileList != null)
+                {
+                    foreach (Profile profile in ProfileList)
+                    {
+                        if(profile.Name.ToLower().Contains(SearchInput.Text.ToLower()))
+                        {
+                            ProfileListing.Items.Add(profile);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                RefreshProfileListing();
             }
         }
     }

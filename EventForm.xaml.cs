@@ -72,18 +72,19 @@ namespace peopledex
                 profileEvent.Id = int.Parse(ProfileEventIdInput.Text);
                 main.UpdateProfileEvent(profileEvent);
             }
-
             this.Close();
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void DeleteEventButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow main = (MainWindow)Application.Current.MainWindow;
+            main.DeleteProfileEvent(int.Parse(ProfileEventIdInput.Text));
+            this.Close();
         }
     }
 }

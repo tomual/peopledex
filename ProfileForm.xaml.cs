@@ -154,6 +154,7 @@ namespace peopledex
         {
             MainWindow main = (MainWindow)Application.Current.MainWindow;
             main.DeleteProfile(int.Parse(IdInput.Text));
+            this.Close();
         }
     }
 }

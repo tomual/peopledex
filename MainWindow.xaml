@@ -105,8 +105,8 @@
                 <RowDefinition Height="345*"/>
             </Grid.RowDefinitions>
             <Button x:Name="NewProfileButton" Content="New" HorizontalAlignment="Left" Margin="12,0,0,0" VerticalAlignment="Bottom" Width="52" Click="NewProfileButton_Click"  Padding="1,2,1,1" RenderTransformOrigin="0.526,1.458" Grid.Row="1"/>
-            <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="31" Margin="95,6,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" FontFamily="Corbel" Background="#FAFBFD" Foreground="#333" Padding="7,7,7,0" BorderBrush="#CCC"/>
-            <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="229,0,0,0" VerticalAlignment="Bottom" Width="60"   Grid.Row="1" Padding="1,2,1,1"/>
+            <TextBox x:Name="SearchInput" HorizontalAlignment="Left" Height="31" Margin="95,6,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" FontFamily="Corbel" Background="#FAFBFD" Foreground="#333" Padding="7,7,7,0" BorderBrush="#CCC"/>
+            <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="229,0,0,0" VerticalAlignment="Bottom" Width="60"   Grid.Row="1" Padding="1,2,1,1" Click="SearchButton_Click"/>
 
             <TextBlock HorizontalAlignment="Left" Margin="0,44,0,0" TextWrapping="Wrap" Text="Peopledex" VerticalAlignment="Top" FontFamily="Corbel" Foreground="White" Height="19" Width="302" TextAlignment="Center"/>
             <TextBlock HorizontalAlignment="Left" Margin="0,18,0,0" TextWrapping="Wrap" Text="]" VerticalAlignment="Top" FontFamily="Wingdings" Foreground="White" Height="26" Width="302" TextAlignment="Center" FontSize="20" RenderTransformOrigin="0.473,0.615"/>
