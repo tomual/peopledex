@@ -1,25 +1,13 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace peopledex
 {
-    /// <summary>
-    /// Interaction logic for Main.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         List<Profile> ProfileList;
@@ -27,7 +15,7 @@ namespace peopledex
 
         public MainWindow()
         {
-            //Properties.Settings.Default.Reset();
+            // Load profile listing from storage
             if (Properties.Settings.Default.ProfileList != null)
             {
                 ProfileList = Properties.Settings.Default.ProfileList;
@@ -39,13 +27,16 @@ namespace peopledex
 
             InitializeComponent();
             RefreshProfileListing();
-
-            if(ProfileList.Count > 0)
-            {
-                currentProfile = ProfileList[ProfileList.Count - 1];
-            }
         }
 
+        // Save profile list to storage
+        private void SaveToStorage()
+        {
+            Properties.Settings.Default.ProfileList = ProfileList;
+            Properties.Settings.Default.Save();
+        }
+
+        // Refresh profiles ListView
         private void RefreshProfileListing()
         {
             ProfileListing.Items.Clear();
@@ -58,10 +49,11 @@ namespace peopledex
             }
         }
 
+        // Refresh profile's events ListView
         private void RefreshProfileEventsListing()
         {
             ProfileEventsListing.Items.Clear();
-            if(currentProfile.ProfileEvents != null)
+            if (currentProfile.ProfileEvents != null)
             {
                 foreach (ProfileEvent profileEvent in currentProfile.ProfileEvents)
                 {
@@ -70,12 +62,7 @@ namespace peopledex
             }
         }
 
-        private void NewProfileButton_Click(object sender, RoutedEventArgs e)
-        {
-            ProfileForm newProfile = new ProfileForm();
-            newProfile.Show();
-        }
-
+        // Add Profile
         public void AddProfile(Profile profile)
         {
             profile.Id = GetNextProfileId();
@@ -95,6 +82,7 @@ namespace peopledex
             RefreshProfileListing();
         }
 
+        // Update profile
         public void UpdateProfile(Profile profile)
         {
             int index = ProfileList.FindLastIndex(p => p.Id == profile.Id);
@@ -116,12 +104,7 @@ namespace peopledex
             RefreshProfileListing();
         }
 
-        private void SaveToStorage()
-        {
-            Properties.Settings.Default.ProfileList = ProfileList;
-            Properties.Settings.Default.Save();
-        }
-
+        // Update profile event
         public void UpdateProfileEvent(ProfileEvent profileEvent)
         {
             int index = currentProfile.ProfileEvents.FindLastIndex(p => p.Id == profileEvent.Id);
@@ -135,6 +118,7 @@ namespace peopledex
             SetProfile(currentProfile);
         }
 
+        // Delete profile
         public void DeleteProfile(int Id)
         {
             int index = ProfileList.FindLastIndex(p => p.Id == Id);
@@ -149,6 +133,7 @@ namespace peopledex
             WelcomeOverlay.Visibility = Visibility.Visible;
         }
 
+        // Delete profile event
         public void DeleteProfileEvent(int Id)
         {
             int index = currentProfile.ProfileEvents.FindLastIndex(p => p.Id == Id);
@@ -161,6 +146,7 @@ namespace peopledex
             SetProfile(currentProfile);
         }
 
+        // Set currently visible profile
         public void SetProfile(Profile profile)
         {
             WelcomeOverlay.Visibility = Visibility.Hidden;
@@ -197,7 +183,7 @@ namespace peopledex
             ProfileNumber.Text = "#" + profile.Id.ToString("D3");
             ProfileName.Text = profile.Name;
             ProfileSubtext.Text = profile.Location;
-            if(!string.IsNullOrEmpty(profile.Email))
+            if (!string.IsNullOrEmpty(profile.Email))
             {
                 ProfileSubtext.Text += "  ·  " + profile.Email;
             }
@@ -210,13 +196,14 @@ namespace peopledex
             RefreshProfileEventsListing();
         }
 
+        // Add profile event
         public void AddEvent(int Id, ProfileEvent profileEvent)
         {
             int index = ProfileList.FindLastIndex(p => p.Id == Id);
             if (index != -1)
             {
                 profileEvent.Id = GetNextProfileEventId();
-                if(ProfileList[index].ProfileEvents == null)
+                if (ProfileList[index].ProfileEvents == null)
                 {
                     ProfileList[index].ProfileEvents = new List<ProfileEvent>();
                 }
@@ -227,14 +214,16 @@ namespace peopledex
             Console.WriteLine(profileEvent.Id);
         }
 
+        // Get next ID # for profile
         private int GetNextProfileId()
         {
             return Properties.Settings.Default.Id;
         }
 
+        // Get next ID # for profile's events
         private int GetNextProfileEventId()
         {
-            if(currentProfile.ProfileEvents != null && currentProfile.ProfileEvents.Count > 0 )
+            if (currentProfile.ProfileEvents != null && currentProfile.ProfileEvents.Count > 0)
             {
                 int index = currentProfile.ProfileEvents.Count - 1;
                 return currentProfile.ProfileEvents[index].Id + 1;
@@ -242,15 +231,8 @@ namespace peopledex
             return 1;
         }
 
-        public void PrintProfileList()
-        {
-            foreach (Profile profile in Properties.Settings.Default.ProfileList)
-            {
-                Console.WriteLine(profile.Name);
-            }
-        }
-
-        private void ProfileListing_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        // Event - Change profile selection
+        private void ChangedProfileListing(object sender, SelectionChangedEventArgs e)
         {
             var selectedItems = ProfileListing.SelectedItems;
             foreach (Profile profile in selectedItems)
@@ -259,7 +241,15 @@ namespace peopledex
             }
         }
 
-        private void EditProfileButton_Click(object sender, RoutedEventArgs e)
+        // Event - Click new profile button
+        private void ClickNewProfileButton(object sender, RoutedEventArgs e)
+        {
+            ProfileForm newProfile = new ProfileForm();
+            newProfile.Show();
+        }
+
+        // Event - Click edit profile button
+        private void ClickEditProfileButton(object sender, RoutedEventArgs e)
         {
             if (currentProfile != null)
             {
@@ -268,12 +258,14 @@ namespace peopledex
             }
         }
 
-        private void NewEventButton_Click(object sender, RoutedEventArgs e)
+        // Event - Click new event button on profile
+        private void ClickNewEventButton(object sender, RoutedEventArgs e)
         {
             EventForm newEvent = new EventForm(currentProfile.Id);
             newEvent.Show();
         }
 
+        // Event - Double Click on profile event
         private void ProfileEventsListing_DoubleClick(object sender, RoutedEventArgs e)
         {
             var selectedItems = ProfileEventsListing.SelectedItems;
@@ -284,16 +276,17 @@ namespace peopledex
             }
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        // Event - Click on search button
+        private void ClickSearchButton(object sender, RoutedEventArgs e)
         {
-            if(!string.IsNullOrEmpty(SearchInput.Text))
+            if (!string.IsNullOrEmpty(SearchInput.Text))
             {
                 ProfileListing.Items.Clear();
                 if (Properties.Settings.Default.ProfileList != null)
                 {
                     foreach (Profile profile in ProfileList)
                     {
-                        if(profile.Name.ToLower().Contains(SearchInput.Text.ToLower()))
+                        if (profile.Name.ToLower().Contains(SearchInput.Text.ToLower()))
                         {
                             ProfileListing.Items.Add(profile);
                         }
@@ -306,12 +299,13 @@ namespace peopledex
             }
         }
 
-        private void NextProfileButton_Click(object sender, RoutedEventArgs e)
+        // Event - Click next profile button
+        private void ClickNextProfileButton(object sender, RoutedEventArgs e)
         {
             int index = ProfileList.FindLastIndex(p => p.Id == currentProfile.Id);
             if (index != -1)
             {
-                if(index != ProfileList.Count - 1)
+                if (index != ProfileList.Count - 1)
                 {
                     SetProfile(ProfileList[index + 1]);
                     ProfileListing.SelectedItem = ProfileListing.Items[index + 1];
@@ -319,7 +313,8 @@ namespace peopledex
             }
         }
 
-        private void PreviousProfileButton_Click(object sender, RoutedEventArgs e)
+        // Event - Click previous profile button
+        private void ClickPreviousProfileButton(object sender, RoutedEventArgs e)
         {
             int index = ProfileList.FindLastIndex(p => p.Id == currentProfile.Id);
             if (index != -1)
@@ -332,26 +327,4 @@ namespace peopledex
             }
         }
     }
-}
-
-public class Profile
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public string Picture { get; set; }
-    public string Location { get; set; }
-    public string Email { get; set; }
-    public string Occupation { get; set; }
-    public string Birthday { get; set; }
-    public string Likes { get; set; }
-    public string Description { get; set; }
-    public List<ProfileEvent> ProfileEvents { get; set; }
-}
-
-public class ProfileEvent
-{
-    public int Id { get; set; }
-    public string Date { get; set; }
-    public string Title { get; set; }
-    public string Description { get; set; }
 }

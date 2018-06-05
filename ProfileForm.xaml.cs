@@ -1,27 +1,11 @@
 ﻿using Microsoft.Win32;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Drawing;
 
 namespace peopledex
 {
-    /// <summary>
-    /// Interaction logic for ProfileForm.xaml
-    /// </summary>
     public partial class ProfileForm : Window
     {
         enum FormMode { New, Edit };
@@ -55,7 +39,20 @@ namespace peopledex
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void PrepopulateForm(Profile profile)
+        {
+            IdInput.Text = profile.Id.ToString();
+            NameInput.Text = profile.Name;
+            PictureInput.Text = profile.Picture;
+            LocationInput.Text = profile.Location;
+            EmailInput.Text = profile.Email;
+            OccupationInput.Text = profile.Occupation;
+            BirthdayInput.Text = profile.Birthday;
+            LikeInput.Text = profile.Likes;
+            DescriptionInput.Text = profile.Description;
+        }
+
+        private void ClickCreateButton(object sender, RoutedEventArgs e)
         {
             if (ValidateNewProfileForm())
             {
@@ -85,20 +82,7 @@ namespace peopledex
             }
         }
 
-        private void PrepopulateForm(Profile profile)
-        {
-            IdInput.Text = profile.Id.ToString();
-            NameInput.Text = profile.Name;
-            PictureInput.Text = profile.Picture;
-            LocationInput.Text = profile.Location;
-            EmailInput.Text = profile.Email;
-            OccupationInput.Text = profile.Occupation;
-            BirthdayInput.Text = profile.Birthday;
-            LikeInput.Text = profile.Likes;
-            DescriptionInput.Text = profile.Description;
-        }
-
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void ClickCancelButton(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -126,7 +110,7 @@ namespace peopledex
             return valid;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ClickBrowseButton(object sender, RoutedEventArgs e)
         {
             OpenFileDialog op = new OpenFileDialog();
             op.Title = "Select a picture";
@@ -135,22 +119,11 @@ namespace peopledex
               "Portable Network Graphic (*.png)|*.png";
             if (op.ShowDialog() == true)
             {
-                //IResourceWriter writer = new ResourceWriter("myResources.resources");
-                //Preview.Source = new BitmapImage(new Uri(op.FileName));
-                //FileStream fs = File.Open(op.FileName, FileMode.Open);
-                //writer.AddResource("dude", fs);
-
                 PictureInput.Text = op.FileName;
-
-                //System.Drawing.Image img = System.Drawing.Image.FromFile(op.FileName);
-                //ResXResourceWriter rsxw = new ResXResourceWriter("en-AU.resx");
-                //rsxw.AddResource("en-AU.jpg", img);
-                //rsxw.Close();
-
             }
         }
 
-        private void DeleteProfileButton_Click(object sender, RoutedEventArgs e)
+        private void ClickDeleteProfileButton(object sender, RoutedEventArgs e)
         {
             MainWindow main = (MainWindow)Application.Current.MainWindow;
             main.DeleteProfile(int.Parse(IdInput.Text));

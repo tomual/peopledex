@@ -61,6 +61,8 @@
     <Compile Include="EventForm.xaml.cs">
       <DependentUpon>EventForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Profile.cs" />
+    <Compile Include="ProfileEvent.cs" />
     <Compile Include="Settings.cs" />
     <Page Include="EventForm.xaml">
       <SubType>Designer</SubType>
