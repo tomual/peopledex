@@ -31,11 +31,13 @@ namespace peopledex
                 currentMode = FormMode.New;
                 DeleteProfileButton.Visibility = Visibility.Hidden;
                 SubmitButton.Content = "Create";
+                this.Title = "New Profile";
             }
             else
             {
                 currentMode = FormMode.Edit;
                 SubmitButton.Content = "Update";
+                this.Title = "Edit Profile";
             }
         }
 

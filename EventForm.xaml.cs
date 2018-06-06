@@ -15,6 +15,7 @@ namespace peopledex
             InitializeComponent();
             ProfileIdInput.Text = id.ToString();
             InitializeForm(FormMode.New);
+            this.Title = "New Event";
         }
 
         public EventForm(int id, ProfileEvent profileEvent)
@@ -26,6 +27,7 @@ namespace peopledex
             TitleInput.Text = profileEvent.Title;
             DateInput.Text = profileEvent.Date;
             DescriptionInput.Text = profileEvent.Description;
+            this.Title = "Edit Event";
         }
 
         private void InitializeForm(FormMode mode)

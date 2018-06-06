@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:peopledex"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="peopledex.MainWindow"
         mc:Ignorable="d"
-        Title="Main" Height="632.575" Width="903.309" Background="{x:Null}">
+        Title="Peopledex" Height="632.575" Width="903.309" Background="{x:Null}" Icon="Resources/icon.ico">
     <Window.Resources>
         <Style x:Key="Title" TargetType="{x:Type Rectangle}"/>
         <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
@@ -140,8 +140,8 @@
                     <EllipseGeometry Center="66,66" RadiusX="66" RadiusY="66" />
                 </Image.Clip>
             </Image>
-            <Button x:Name="PreviousProfileButton" Content="&lt;" HorizontalAlignment="Left" Margin="10,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="40"    Padding="1" Click="ClickPreviousProfileButton"/>
-            <Button x:Name="NextProfileButton" Content="&gt;" HorizontalAlignment="Left" Margin="424,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="36" Click="ClickNextProfileButton"    />
+            <Button x:Name="PreviousProfileButton" Content="◀" HorizontalAlignment="Left" Margin="10,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="40"    Padding="1" Click="ClickPreviousProfileButton" FontFamily="Corbel" FontSize="10"/>
+            <Button x:Name="NextProfileButton" Content="▶" HorizontalAlignment="Left" Margin="424,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="36" Click="ClickNextProfileButton" FontFamily="Corbel" FontSize="10"    />
             <Button x:Name="EditProfileButton" Content="Edit" HorizontalAlignment="Left" Margin="61,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" Width="60"     Padding="1,2,1,1" Click="ClickEditProfileButton"/>
             <Rectangle Fill="#FAFBFD" HorizontalAlignment="Left" Height="62" Stroke="#CCC" StrokeThickness="0" VerticalAlignment="Top" Width="450" Margin="10,212,0,0"/>
             <TextBlock x:Name="ProfileDescription" HorizontalAlignment="Left" Margin="9,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" Width="451" Padding="15,12" FontFamily="Corbel" FontSize="12" Foreground="#FF666666"/>

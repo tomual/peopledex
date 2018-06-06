@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:peopledex"
         mc:Ignorable="d"
-        Title="ProfileForm" Height="512" Width="421">
+        Title="ProfileForm" Height="512" Width="421" Icon="Resources/icon.ico">
     <Window.Resources>
         <Style x:Key="Title" TargetType="{x:Type Rectangle}"/>
         <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
@@ -79,6 +79,7 @@
         <TextBox x:Name="NameInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="Wrap"/>
         <TextBox x:Name="PictureInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,45,0,0" Width="156" IsEnabled="False"/>
         <TextBox x:Name="LocationInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,80,0,0" TextWrapping="Wrap"/>
+        <TextBox x:Name="EmailInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,113,0,0" TextWrapping="Wrap" />
         <TextBox x:Name="OccupationInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,147,0,0" TextWrapping="Wrap" />
         <TextBox x:Name="BirthdayInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,182,0,0" TextWrapping="Wrap"/>
         <TextBox x:Name="LikeInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,217,0,0" TextWrapping="Wrap"/>
@@ -94,7 +95,6 @@
         <TextBox x:Name="IdInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,327,0,0" TextWrapping="Wrap" Visibility="Hidden"/>
         <Button x:Name="DeleteProfileButton" Content="Delete Profile" HorizontalAlignment="Left" Margin="111,0,0,0" VerticalAlignment="Bottom" Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" RenderTransformOrigin="0.653,0.516" Click="ClickDeleteProfileButton" Grid.ColumnSpan="2" FontWeight="Normal"/>
         <Label Content="EMAIL" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel"/>
-        <TextBox x:Name="EmailInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,113,0,0" TextWrapping="Wrap" />
 
     </Grid>
 </Window>

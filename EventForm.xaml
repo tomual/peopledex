@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:peopledex"
         mc:Ignorable="d"
-        Title="EventForm" Height="354.667" Width="429.334">
+        Title="EventForm" Height="354.667" Width="429.334" Icon="Resources/icon.ico">
 
     <Window.Resources>
         <Style x:Key="Title" TargetType="{x:Type Rectangle}"/>

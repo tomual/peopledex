@@ -70,10 +70,7 @@ namespace peopledex
             if (!string.IsNullOrEmpty(profile.Picture))
             {
                 System.Drawing.Image img = System.Drawing.Image.FromFile(profile.Picture);
-
-                ResXResourceWriter rsxw = new ResXResourceWriter("profileImages.resx");
-                rsxw.AddResource(profile.Id.ToString(), img);
-                rsxw.Close();
+                WriteProfileImage(profile.Id, img);
             }
 
             ProfileList.Add(profile);
@@ -88,17 +85,14 @@ namespace peopledex
             int index = ProfileList.FindLastIndex(p => p.Id == profile.Id);
             if (index != -1)
             {
-                Console.WriteLine(ProfileList[index]);
                 ProfileList[index] = profile;
 
                 if (!string.IsNullOrEmpty(profile.Picture))
                 {
                     System.Drawing.Image img = System.Drawing.Image.FromFile(profile.Picture);
-
-                    ResXResourceWriter rsxw = new ResXResourceWriter("profileImages.resx");
-                    rsxw.AddResource(profile.Id.ToString(), img);
-                    rsxw.Close();
+                    WriteProfileImage(profile.Id, img);
                 }
+                profile.Picture = null;
             }
             SaveToStorage();
             RefreshProfileListing();
@@ -110,7 +104,6 @@ namespace peopledex
             int index = currentProfile.ProfileEvents.FindLastIndex(p => p.Id == profileEvent.Id);
             if (index != -1)
             {
-                Console.WriteLine(ProfileList[index]);
                 currentProfile.ProfileEvents[index] = profileEvent;
                 UpdateProfile(currentProfile);
             }
@@ -124,9 +117,7 @@ namespace peopledex
             int index = ProfileList.FindLastIndex(p => p.Id == Id);
             if (index != -1)
             {
-                Console.WriteLine(ProfileList[index]);
                 ProfileList.RemoveAt(index);
-
             }
             SaveToStorage();
             RefreshProfileListing();
@@ -154,6 +145,7 @@ namespace peopledex
             {
                 using (ResXResourceSet resxSet = new ResXResourceSet("profileImages.resx"))
                 {
+                    Console.WriteLine(resxSet.GetObject(profile.Id.ToString(), true));
                     System.Drawing.Image img = (System.Drawing.Image)resxSet.GetObject(profile.Id.ToString(), true);
                     if (img != null)
                     {
@@ -211,7 +203,6 @@ namespace peopledex
             }
             UpdateProfile(ProfileList[index]);
             SetProfile(ProfileList[index]);
-            Console.WriteLine(profileEvent.Id);
         }
 
         // Get next ID # for profile
@@ -229,6 +220,26 @@ namespace peopledex
                 return currentProfile.ProfileEvents[index].Id + 1;
             }
             return 1;
+        }
+
+        // Writes profile image to resoures
+        private void WriteProfileImage(int Id, System.Drawing.Image img)
+        {
+            var writer = new ResXResourceWriter("profileImages.resx");
+            if(File.Exists("profileImages.resx"))
+            {
+                var reader = new ResXResourceReader("profileImages.resx");
+                var node = reader.GetEnumerator();
+                while (node.MoveNext())
+                {
+                    Console.WriteLine(node.Value);
+                    writer.AddResource(node.Key.ToString(), node.Value);
+                }
+            }
+            var newNode = new ResXDataNode(Id.ToString(), img);
+            writer.AddResource(newNode);
+            writer.Generate();
+            writer.Close();
         }
 
         // Event - Change profile selection
@@ -302,28 +313,18 @@ namespace peopledex
         // Event - Click next profile button
         private void ClickNextProfileButton(object sender, RoutedEventArgs e)
         {
-            int index = ProfileList.FindLastIndex(p => p.Id == currentProfile.Id);
-            if (index != -1)
+            if(ProfileListing.SelectedIndex != ProfileListing.Items.Count - 1)
             {
-                if (index != ProfileList.Count - 1)
-                {
-                    SetProfile(ProfileList[index + 1]);
-                    ProfileListing.SelectedItem = ProfileListing.Items[index + 1];
-                }
+                ProfileListing.SelectedIndex = ProfileListing.SelectedIndex + 1;
             }
         }
 
         // Event - Click previous profile button
         private void ClickPreviousProfileButton(object sender, RoutedEventArgs e)
         {
-            int index = ProfileList.FindLastIndex(p => p.Id == currentProfile.Id);
-            if (index != -1)
+            if (ProfileListing.SelectedIndex != 0)
             {
-                if (index != 0)
-                {
-                    SetProfile(ProfileList[index - 1]);
-                    ProfileListing.SelectedItem = ProfileListing.Items[index - 1];
-                }
+                ProfileListing.SelectedIndex = ProfileListing.SelectedIndex - 1;
             }
         }
     }
