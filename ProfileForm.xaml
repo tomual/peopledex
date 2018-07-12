@@ -23,39 +23,9 @@
             <Setter Property="FontFamily" Value="Segoe UI" />
             <Setter Property="FontSize" Value="14" />
         </Style>
-        <Style TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="#F39F1B"/>
-            <Setter Property="BorderBrush" Value="#E77F11"/>
-            <Setter Property="BorderThickness" Value="0,0,0,5"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Corbel"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Height" Value="31"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Height="{TemplateBinding Height}"  Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="BorderThickness" Value="0,0,0,4"/>
-                    <Setter Property="Height" Value="30"/>
-                </Trigger>
-                <Trigger Property="Button.IsPressed" Value="True">
-                    <Setter Property="BorderThickness" Value="0,0,0,2"/>
-                    <Setter Property="Height" Value="28"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
         <Style TargetType="{x:Type Label}">
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Height" Value="30"/>
-            <Setter Property="Foreground" Value="#666"/>
         </Style>
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="VerticalAlignment" Value="Top"/>
