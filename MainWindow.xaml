@@ -57,6 +57,17 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#ECECEC" />
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="true" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="#DDD" />
+                </MultiTrigger>
+            </Style.Triggers>
         </Style>
     </Window.Resources>
 
@@ -75,7 +86,7 @@
                 <RowDefinition Height="399*"/>
             </Grid.RowDefinitions>
             <Button x:Name="NewProfileButton" Content="New" HorizontalAlignment="Left" Margin="0,0,0,358" VerticalAlignment="Bottom" Width="52" Click="ClickNewProfileButton"  Padding="1,2,1,1" RenderTransformOrigin="0.526,1.458" Height="29" Grid.Row="1"/>
-            <TextBox x:Name="SearchInput" HorizontalAlignment="Left" Height="29" Margin="87,12,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" FontFamily="Corbel" Background="#FAFBFD" Foreground="#333" Padding="7,7,7,0" BorderBrush="#CCC"/>
+            <TextBox x:Name="SearchInput" HorizontalAlignment="Left" Height="29" Margin="88,12,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" FontFamily="Corbel" Background="#FAFBFD" Foreground="#333" Padding="7,7,7,0" BorderBrush="#FF707070"/>
             <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="215,0,0,358" VerticalAlignment="Bottom" Width="53" Padding="1,2,1,1" Click="ClickSearchButton" Height="29" Grid.Row="1"/>
 
             <TextBlock HorizontalAlignment="Left" Margin="0,50,0,0" TextWrapping="Wrap" Text="Peopledex" VerticalAlignment="Top" FontFamily="Corbel" Foreground="White" Height="20" Width="275" TextAlignment="Center"/>
@@ -131,10 +142,10 @@
             <Button x:Name="NewEventButton" Content="New Event" HorizontalAlignment="Left" Margin="380,0,0,223" Grid.Row="1" VerticalAlignment="Bottom" Width="63"     Padding="1,2,1,1" Click="ClickNewEventButton" Height="23" FontSize="10" Background="#FFCCCCCC" BorderBrush="#FFAEAEAE" Foreground="#FF666666"/>
 
         </Grid>
-        <Grid x:Name="WelcomeOverlay" Grid.Column="1" Margin="24,24,29,29" Visibility="Hidden">
-            <Rectangle Fill="White" HorizontalAlignment="Left" Height="549" VerticalAlignment="Top" Width="488"/>
-            <TextBlock HorizontalAlignment="Left" Margin="214,113,0,0" TextWrapping="Wrap" Text="]" VerticalAlignment="Top" FontFamily="Wingdings" FontSize="72" Foreground="#FF999999"/>
-            <TextBlock HorizontalAlignment="Left" Margin="165,198,0,0" TextWrapping="Wrap" Text="Create a new profile or select one from the list" VerticalAlignment="Top" Width="163" FontFamily="Corbel" FontSize="14" Foreground="#FF999999" TextAlignment="Center"/>
+        <Grid x:Name="WelcomeOverlay" Grid.Column="1" Margin="24,24,29,29">
+            <Rectangle Fill="White" HorizontalAlignment="Left" Height="515" VerticalAlignment="Top" Width="466" Margin="-20,-22,-26,-22"/>
+            <TextBlock HorizontalAlignment="Left" Margin="184,0,0,272" TextWrapping="Wrap" Text="]" VerticalAlignment="Bottom" FontFamily="Wingdings" FontSize="72" Foreground="#FF999999" RenderTransformOrigin="0.951,0.399"/>
+            <TextBlock HorizontalAlignment="Left" Margin="136,0,0,233" TextWrapping="Wrap" Text="Create a new profile or select one from the list" VerticalAlignment="Bottom" Width="163" FontFamily="Corbel" FontSize="14" Foreground="#FF999999" TextAlignment="Center"/>
         </Grid>
     </Grid>
 </Window>

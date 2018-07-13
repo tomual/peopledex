@@ -24,35 +24,6 @@
             <Setter Property="FontFamily" Value="Segoe UI" />
             <Setter Property="FontSize" Value="14" />
         </Style>
-        <Style TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="#F39F1B"/>
-            <Setter Property="BorderBrush" Value="#E77F11"/>
-            <Setter Property="BorderThickness" Value="0,0,0,5"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Corbel"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Height" Value="31"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Height="{TemplateBinding Height}"  Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="BorderThickness" Value="0,0,0,4"/>
-                    <Setter Property="Height" Value="30"/>
-                </Trigger>
-                <Trigger Property="Button.IsPressed" Value="True">
-                    <Setter Property="BorderThickness" Value="0,0,0,2"/>
-                    <Setter Property="Height" Value="28"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
         <Style TargetType="{x:Type Label}">
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Height" Value="30"/>
@@ -77,13 +48,13 @@
         <TextBox x:Name="TitleInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="Wrap"/>
         <TextBox x:Name="DateInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,43,0,0" TextWrapping="Wrap"/>
         <TextBox x:Name="DescriptionInput" Grid.Column="1" HorizontalAlignment="Left" Height="102" Margin="0,78,0,0" TextWrapping="Wrap" AcceptsReturn="True"/>
-        <Button x:Name="SubmitButton" Content="Create" Grid.Column="1" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Bottom" Width="75" Click="ClickCreateButton"/>
-        <Button x:Name="CancelButton" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Bottom" Width="75" Background="#FFCCCCCC" BorderBrush="#FF999999" Foreground="#FF666666" RenderTransformOrigin="0.653,0.516" Click="ClickCancelButton"/>
+        <Button x:Name="SubmitButton" Content="Create" Grid.Column="1" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Bottom" Width="75" Click="ClickCreateButton" Height="26"/>
+        <Button x:Name="CancelButton" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Bottom" Width="75" Background="#FFCCCCCC" BorderBrush="#FF999999" Foreground="#FF666666" RenderTransformOrigin="0.653,0.516" Click="ClickCancelButton" Height="26"/>
         <Label x:Name="ErrorLabel" Content="Please fill required values." Grid.Column="1" HorizontalAlignment="Right" Margin="0,358,13,0" VerticalAlignment="Top" Foreground="#FFD26759" Visibility="Hidden"/>
         <Label Content="*" HorizontalAlignment="Left" Margin="43,10,0,0" VerticalAlignment="Top" Width="35" FontFamily="Corbel" Foreground="#FFD26759"/>
         <Label Content="*" HorizontalAlignment="Left" Margin="39,43,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel" Foreground="#FFD26759"/>
         <Label Content="*" HorizontalAlignment="Left" Margin="86,78,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel" Foreground="#FFD26759" Grid.ColumnSpan="2"/>
-        <Button x:Name="DeleteEventButton" Content="Delete Event" HorizontalAlignment="Left" Margin="114,0,0,0" VerticalAlignment="Bottom" Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" RenderTransformOrigin="0.653,0.516" Click="ClickDeleteEventButton" Grid.ColumnSpan="2" FontWeight="Normal"/>
+        <Button x:Name="DeleteEventButton" Content="Delete Event" HorizontalAlignment="Left" Margin="114,0,0,0" VerticalAlignment="Bottom" Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" RenderTransformOrigin="0.653,0.516" Click="ClickDeleteEventButton" Grid.ColumnSpan="2" FontWeight="Normal" Height="26"/>
         <TextBox x:Name="ProfileEventIdInput" Grid.Column="1" HorizontalAlignment="Left" Margin="63,185,0,0" TextWrapping="Wrap" Width="58" Visibility="Hidden"/>
         <TextBox x:Name="ProfileIdInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,185,0,0" TextWrapping="Wrap" Width="58" Visibility="Hidden"/>
         <Label x:Name="EventErrorLabel" Content="Please fill required values." Grid.Column="1" HorizontalAlignment="Right" Margin="0,206,18,0" VerticalAlignment="Top" Foreground="#FFD26759" Visibility="Hidden"/>
