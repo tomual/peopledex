@@ -53,13 +53,13 @@
         <TextBox x:Name="OccupationInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,147,0,0" TextWrapping="Wrap" />
         <TextBox x:Name="LikeInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,217,0,0" TextWrapping="Wrap"/>
         <TextBox x:Name="DescriptionInput" Grid.Column="1" HorizontalAlignment="Left" Height="102" Margin="0,252,0,0" TextWrapping="Wrap" AcceptsReturn="True"/>
-        <Button x:Name="SubmitButton" Content="Create" Grid.Column="1" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Bottom" Width="75" Click="ClickCreateButton" Height="26"/>
-        <Button x:Name="CancelButton" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Bottom" Width="75" Background="#FFCCCCCC" BorderBrush="#FF999999" Foreground="#FF666666" RenderTransformOrigin="0.653,0.516" Click="ClickCancelButton" Height="26"/>
+        <Button x:Name="SubmitButton" Content="Create" Grid.Column="1" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Bottom" Width="75" Click="ClickCreateButton" Height="26" BorderBrush="#FFAEAEAE" Foreground="#FF474747"/>
+        <Button x:Name="CancelButton" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Bottom" Width="75" Background="#FFDDDDDD" BorderBrush="#FFAEAEAE" Foreground="#FF474747" RenderTransformOrigin="0.653,0.516" Click="ClickCancelButton" Height="26"/>
         <Label x:Name="ErrorLabel" Content="Please fill required values." Grid.Column="1" HorizontalAlignment="Right" Margin="0,358,13,0" VerticalAlignment="Top" Foreground="#FFD26759" Visibility="Hidden"/>
         <Label Content="*" HorizontalAlignment="Left" Margin="46,10,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel" Foreground="#FFD26759"/>
         <Label Content="*" HorizontalAlignment="Left" Margin="71,80,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel" Foreground="#FFD26759" Grid.ColumnSpan="2"/>
         <Label Content="*" HorizontalAlignment="Left" Margin="86,252,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel" Foreground="#FFD26759" Grid.ColumnSpan="2"/>
-        <Button x:Name="BrowseButton" Content="Browse" Grid.Column="1" HorizontalAlignment="Left" Margin="161,45,0,0" VerticalAlignment="Top" Width="64" Height="28" Background="#FFCCCCCC" BorderBrush="#FF999999" Foreground="#FF666666" Click="ClickBrowseButton"/>
+        <Button x:Name="BrowseButton" Content="Browse" Grid.Column="1" HorizontalAlignment="Left" Margin="161,45,0,0" VerticalAlignment="Top" Width="64" Height="28" Background="#FFDDDDDD" BorderBrush="#FFAEAEAE" Foreground="#FF666666" Click="ClickBrowseButton"/>
         <Image x:Name="Preview" HorizontalAlignment="Left" Height="100" Margin="10,319,0,0" VerticalAlignment="Top" Width="100"/>
         <TextBox x:Name="IdInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,327,0,0" TextWrapping="Wrap" Visibility="Hidden"/>
         <Button x:Name="DeleteProfileButton" Content="Delete Profile" HorizontalAlignment="Left" Margin="111,0,0,0" VerticalAlignment="Bottom" Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" RenderTransformOrigin="0.653,0.516" Click="ClickDeleteProfileButton" Grid.ColumnSpan="2" FontWeight="Normal" Height="26"/>

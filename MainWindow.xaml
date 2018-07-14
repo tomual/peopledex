@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:peopledex"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="peopledex.MainWindow"
         mc:Ignorable="d"
-        Title="Peopledex" Height="555.075" Width="782.642" Background="{x:Null}" Icon="Resources/icon.ico">
+        Title="Peopledex" Height="553.075" Width="782.642" Background="{x:Null}" Icon="Resources/icon.ico">
     <Window.Resources>
         <Style x:Key="Title" TargetType="{x:Type Rectangle}"/>
         <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
@@ -85,12 +85,12 @@
                 <RowDefinition Height="103*"/>
                 <RowDefinition Height="399*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="NewProfileButton" Content="New" HorizontalAlignment="Left" Margin="0,0,0,358" VerticalAlignment="Bottom" Width="52" Click="ClickNewProfileButton"  Padding="1,2,1,1" RenderTransformOrigin="0.526,1.458" Height="29" Grid.Row="1"/>
-            <TextBox x:Name="SearchInput" HorizontalAlignment="Left" Height="29" Margin="88,12,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" FontFamily="Corbel" Background="#FAFBFD" Foreground="#333" Padding="7,7,7,0" BorderBrush="#FF707070"/>
-            <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="215,0,0,358" VerticalAlignment="Bottom" Width="53" Padding="1,2,1,1" Click="ClickSearchButton" Height="29" Grid.Row="1"/>
+            <Button x:Name="NewProfileButton" Content="New" HorizontalAlignment="Left" Margin="0,0,0,358" VerticalAlignment="Bottom" Width="52" Click="ClickNewProfileButton"  Padding="1,2,1,1" RenderTransformOrigin="0.526,1.458" Height="29" Grid.Row="1" Foreground="#FF474747" Background="#FFDDDDDD"/>
+            <TextBox x:Name="SearchInput" HorizontalAlignment="Left" Height="29" Margin="88,12,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" FontFamily="Corbel" Background="#FAFBFD" Foreground="#333" Padding="7,7,7,0" BorderBrush="#FFAEAEAE"/>
+            <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="215,0,0,358" VerticalAlignment="Bottom" Width="53" Padding="1,2,1,1" Click="ClickSearchButton" Height="29" Grid.Row="1" Foreground="#FF474747" BorderBrush="#FFAEAEAE"/>
 
-            <TextBlock HorizontalAlignment="Left" Margin="0,50,0,0" TextWrapping="Wrap" Text="Peopledex" VerticalAlignment="Top" FontFamily="Corbel" Foreground="White" Height="20" Width="275" TextAlignment="Center"/>
-            <TextBlock Margin="0,30,0,0" TextWrapping="Wrap" Text="]" VerticalAlignment="Top" FontFamily="Wingdings" Foreground="White" Height="26" TextAlignment="Center" FontSize="20" RenderTransformOrigin="0.473,0.615" HorizontalAlignment="Left" Width="275"/>
+            <TextBlock HorizontalAlignment="Left" Margin="0,54,-7,0" TextWrapping="Wrap" Text="Peopledex" VerticalAlignment="Top" FontFamily="Corbel" Foreground="White" Height="20" Width="275" TextAlignment="Center"/>
+            <TextBlock Margin="0,29,-7,0" TextWrapping="Wrap" Text="]" VerticalAlignment="Top" FontFamily="Wingdings" Foreground="White" Height="26" TextAlignment="Center" FontSize="20" RenderTransformOrigin="0.473,0.615" HorizontalAlignment="Left" Width="275"/>
 
             <ListView x:Name="ProfileListing" Grid.Row="1" Foreground="#333" Background="#FAFBFD" SelectionChanged="ChangedProfileListing" FontFamily="Corbel" Margin="0,46,0,10" Padding="-3,-1" HorizontalAlignment="Left" Width="272">
                 <ListView.View>
@@ -107,7 +107,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <ListView x:Name="ProfileEventsListing" Grid.Row="1" Background="#FAFBFD" BorderBrush="{x:Null}" Height="182" VerticalAlignment="Top" Padding="-3,-1" Margin="10,28,10,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MouseDoubleClick="ProfileEventsListing_DoubleClick">
+            <ListView x:Name="ProfileEventsListing" Grid.Row="1" Background="#FAFBFD" BorderBrush="{x:Null}" Height="182" VerticalAlignment="Top" Padding="-3,-1" Margin="10,28,10,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MouseDoubleClick="ProfileEventsListing_DoubleClick" FontFamily="Corbel" Foreground="#FF333333">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
                         <GridViewColumn Header="DATE" Width="80" DisplayMemberBinding="{Binding Date}" />
@@ -121,10 +121,10 @@
                     <EllipseGeometry Center="66,66" RadiusX="66" RadiusY="66" />
                 </Image.Clip>
             </Image>
-            <Button x:Name="PreviousProfileButton" Content="◀" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Bottom" Width="40"    Padding="1" Click="ClickPreviousProfileButton" FontFamily="Corbel" FontSize="10" Height="25"/>
-            <Button x:Name="NextProfileButton" Content="▶" HorizontalAlignment="Left" Margin="409,0,0,0" Grid.Row="1" VerticalAlignment="Bottom" Width="36" Click="ClickNextProfileButton" FontFamily="Corbel" FontSize="10" Height="25"    />
-            <Button x:Name="EditProfileButton" Content="Edit" HorizontalAlignment="Left" Margin="55,0,0,0" Grid.Row="1" VerticalAlignment="Bottom" Width="60"     Padding="1,2,1,1" Click="ClickEditProfileButton" Height="25"/>
-            <Rectangle Fill="#FAFBFD" HorizontalAlignment="Left" Height="62" Stroke="#CCC" StrokeThickness="0" VerticalAlignment="Top" Width="433" Margin="10,183,0,0"/>
+            <Button x:Name="PreviousProfileButton" Content="◀" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Bottom" Width="40"    Padding="1" Click="ClickPreviousProfileButton" FontFamily="Corbel" FontSize="10" Height="25" Foreground="#FF474747" BorderBrush="#FFAEAEAE"/>
+            <Button x:Name="NextProfileButton" Content="▶" HorizontalAlignment="Left" Margin="409,0,0,0" Grid.Row="1" VerticalAlignment="Bottom" Width="36" Click="ClickNextProfileButton" FontFamily="Corbel" FontSize="10" Height="25" Foreground="#FF474747" BorderBrush="#FFAEAEAE"    />
+            <Button x:Name="EditProfileButton" Content="Edit" HorizontalAlignment="Left" Margin="55,0,0,0" Grid.Row="1" VerticalAlignment="Bottom" Width="60"     Padding="1,2,1,1" Click="ClickEditProfileButton" Height="25" Foreground="#FF474747" BorderBrush="#FFAEAEAE"/>
+            <Rectangle Fill="#FAFBFD" HorizontalAlignment="Left" Height="57" Stroke="#CCC" StrokeThickness="0" VerticalAlignment="Top" Width="433" Margin="10,183,0,0"/>
             <TextBlock x:Name="ProfileDescription" Margin="11,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" Padding="15,12" FontFamily="Corbel" FontSize="12" Foreground="#FF666666" HorizontalAlignment="Left" Width="432"/>
             <TextBlock x:Name="ProfileNumber" HorizontalAlignment="Left" Margin="172,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Text="-" Height="19" FontFamily="Corbel" Foreground="#CCC" FontSize="10"/>
             <TextBlock x:Name="ProfileName" HorizontalAlignment="Left" Margin="172,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Text="-" Height="21" Foreground="#333" FontFamily="Corbel" FontSize="16" FontWeight="Bold"/>
@@ -139,7 +139,7 @@
             <TextBlock x:Name="ProfileDislikes" HorizontalAlignment="Left" Margin="270,150,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Width="209" FontFamily="Corbel" FontSize="12" Foreground="#FFF" Visibility="Hidden"/>
             <TextBlock HorizontalAlignment="Left" Margin="11,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="9" Foreground="#FF999999"><Run Text="DESCRIPTION"/></TextBlock>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="EVENTS" VerticalAlignment="Top" Width="84" FontFamily="Corbel" FontSize="9" Foreground="#FF999999" Margin="10,7,0,0" Grid.Row="1"/>
-            <Button x:Name="NewEventButton" Content="New Event" HorizontalAlignment="Left" Margin="380,0,0,223" Grid.Row="1" VerticalAlignment="Bottom" Width="63"     Padding="1,2,1,1" Click="ClickNewEventButton" Height="23" FontSize="10" Background="#FFCCCCCC" BorderBrush="#FFAEAEAE" Foreground="#FF666666"/>
+            <Button x:Name="NewEventButton" Content="New Event" HorizontalAlignment="Left" Margin="380,0,0,221" Grid.Row="1" VerticalAlignment="Bottom" Width="63"     Padding="1,2,1,1" Click="ClickNewEventButton" Height="23" FontSize="10" Background="#FFDDDDDD" BorderBrush="#FFAEAEAE" Foreground="#FF474747"/>
 
         </Grid>
         <Grid x:Name="WelcomeOverlay" Grid.Column="1" Margin="24,24,29,29">
