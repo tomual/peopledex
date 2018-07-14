@@ -2,7 +2,7 @@
 Pokedex for your friends. Like a customer relationship management software but for people you know. 
 This is a Windows Application Form written using C#.
 
-![Screenshots](https://raw.githubusercontent.com/tomual/peopledex/master/screenshot2.png)
+![Screenshots](https://raw.githubusercontent.com/tomual/peopledex/master/screenshot3.png)
 
 ## Features
 
