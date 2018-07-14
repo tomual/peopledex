@@ -51,7 +51,6 @@
         <TextBox x:Name="LocationInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,80,0,0" TextWrapping="Wrap"/>
         <TextBox x:Name="EmailInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,113,0,0" TextWrapping="Wrap" />
         <TextBox x:Name="OccupationInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,147,0,0" TextWrapping="Wrap" />
-        <TextBox x:Name="BirthdayInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,182,0,0" TextWrapping="Wrap"/>
         <TextBox x:Name="LikeInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,217,0,0" TextWrapping="Wrap"/>
         <TextBox x:Name="DescriptionInput" Grid.Column="1" HorizontalAlignment="Left" Height="102" Margin="0,252,0,0" TextWrapping="Wrap" AcceptsReturn="True"/>
         <Button x:Name="SubmitButton" Content="Create" Grid.Column="1" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Bottom" Width="75" Click="ClickCreateButton" Height="26"/>
@@ -65,6 +64,7 @@
         <TextBox x:Name="IdInput" Grid.Column="1" HorizontalAlignment="Left" Margin="0,327,0,0" TextWrapping="Wrap" Visibility="Hidden"/>
         <Button x:Name="DeleteProfileButton" Content="Delete Profile" HorizontalAlignment="Left" Margin="111,0,0,0" VerticalAlignment="Bottom" Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF666666" RenderTransformOrigin="0.653,0.516" Click="ClickDeleteProfileButton" Grid.ColumnSpan="2" FontWeight="Normal" Height="26"/>
         <Label Content="EMAIL" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" Width="82" FontFamily="Corbel"/>
+        <DatePicker x:Name="BirthdayInput" HorizontalAlignment="Left" Margin="0,182,0,0" VerticalAlignment="Top" Height="28" Grid.Column="1" Width="225" Padding="2,4,2,2"/>
 
     </Grid>
 </Window>

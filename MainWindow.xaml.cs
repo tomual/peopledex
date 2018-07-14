@@ -89,8 +89,12 @@ namespace peopledex
 
                 if (!string.IsNullOrEmpty(profile.Picture))
                 {
-                    System.Drawing.Image img = System.Drawing.Image.FromFile(profile.Picture);
-                    WriteProfileImage(profile.Id, img);
+                    try {
+                        System.Drawing.Image img = System.Drawing.Image.FromFile(profile.Picture);
+                        WriteProfileImage(profile.Id, img);
+                    } catch (Exception) { 
+
+                    }
                 }
                 profile.Picture = null;
             }
@@ -226,7 +230,7 @@ namespace peopledex
         private void WriteProfileImage(int Id, System.Drawing.Image img)
         {
             var writer = new ResXResourceWriter("profileImages.resx");
-            if(File.Exists("profileImages.resx"))
+            if (File.Exists("profileImages.resx"))
             {
                 var reader = new ResXResourceReader("profileImages.resx");
                 var node = reader.GetEnumerator();
@@ -313,7 +317,7 @@ namespace peopledex
         // Event - Click next profile button
         private void ClickNextProfileButton(object sender, RoutedEventArgs e)
         {
-            if(ProfileListing.SelectedIndex != ProfileListing.Items.Count - 1)
+            if (ProfileListing.SelectedIndex != ProfileListing.Items.Count - 1)
             {
                 ProfileListing.SelectedIndex = ProfileListing.SelectedIndex + 1;
             }

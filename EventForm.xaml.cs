@@ -72,20 +72,30 @@ namespace peopledex
         private bool ValidateNewProfileEventForm()
         {
             bool valid = true;
-            List<TextBox> required = new List<TextBox>();
+            List<Control> required = new List<Control>();
             required.Add(TitleInput);
             required.Add(DateInput);
             required.Add(DescriptionInput);
+            EventErrorLabel.Visibility = Visibility.Hidden;
 
-            foreach (TextBox requiredInput in required)
+            foreach (Control requiredInput in required)
             {
                 requiredInput.BorderBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FFABADB3"));
-                EventErrorLabel.Visibility = Visibility.Hidden;
-                if (string.IsNullOrEmpty(requiredInput.Text))
+                if(requiredInput.GetType() == typeof(TextBox))
                 {
-                    valid = false;
-                    EventErrorLabel.Visibility = Visibility.Visible;
-                    requiredInput.BorderBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#D26759"));
+                    if (string.IsNullOrEmpty(((TextBox)requiredInput).Text))
+                    {
+                        valid = false;
+                        EventErrorLabel.Visibility = Visibility.Visible;
+                        requiredInput.BorderBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#D26759"));
+                    }
+                } else if (requiredInput.GetType() == typeof(DatePicker)) {
+                    if (string.IsNullOrEmpty(((DatePicker)requiredInput).ToString()))
+                    {
+                        valid = false;
+                        EventErrorLabel.Visibility = Visibility.Visible;
+                        requiredInput.BorderBrush = (SolidColorBrush)(new BrushConverter().ConvertFrom("#D26759"));
+                    }
                 }
             }
 
